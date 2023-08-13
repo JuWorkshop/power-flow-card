@@ -1,5 +1,5 @@
 ### Pictures
-![view](img/1.png) 
+(img/1.png) 
 
 
 ## Usefull links
