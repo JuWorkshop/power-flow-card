@@ -9,6 +9,9 @@ Work in progress...
 ![](img/wks.png) 
 ![](img/wks_max.png) 
 
+### Video
+![](MosFet_BMS_cmd.mp4) 
+
 ## Usefull links
 Many thanks. @slipx06:
 . https://github.com/slipx06/sunsynk-power-flow-card
