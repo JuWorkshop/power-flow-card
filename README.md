@@ -7,6 +7,9 @@ Work in progress...
 ![](img/2_mid1.png) 
 ![](img/multi_rs.png) 
 ![](img/wks.png) 
+In conf card:
+inverter:
+  modern: wks_max
 ![](img/wks_max.png) 
 
 ### Video
