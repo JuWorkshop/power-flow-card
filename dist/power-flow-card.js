@@ -122,7 +122,7 @@ class PowerFlowCard extends LitElement {
 
   static getStubConfig() {
     return {
-      cardstyle: "lite",
+      cardstyle: "ju",
       show_solar: "yes",
       show_ev: "no",
       battery: {
