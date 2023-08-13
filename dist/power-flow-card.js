@@ -122,9 +122,6 @@ class PowerFlowCard extends LitElement {
 
   static getStubConfig() {
     return {
-      
-
-
         cardstyle: "ju",
         card_height: 900,
         panel_mode: 'no',
@@ -164,20 +161,20 @@ class PowerFlowCard extends LitElement {
         show_aux: 'yes',
         invert_aux: 'no',
         aux_name: "Inverter",
-        aux_type: "gen",
+        aux_type: "inv",
         aux_colour: "red",
         aux_off_colour: "red",
         animation_speed: 8,
         max_power: 8000,
         additional_loads: "four",
         load1_name: "AC",
-        load2_name: "Atelier",
+        load2_name: "EV_charg",
         load3_name: "Routeur",
-        load4_name: "EV_charg",
+        load4_name: "Atelier",
         load1_icon: "mdi:air-conditioner",
-        load2_icon: "mdi:hair-dryer",
+        load2_icon: "mdi:ev-station",
         load3_icon: "mdi:water-boiler",
-        load4_icon: "mdi:ev-station",
+        load4_icon: "mdi:garage",
 
 
       },
@@ -239,7 +236,7 @@ class PowerFlowCard extends LitElement {
         bat1_switch: "switch.none",
         bat2_switch: "switch.none",
         bat3_switch: "switch.none",
-//        grid_connected_status_194: "binary_sensor.none",
+        //        grid_connected_status_194: "binary_sensor.none",
 
 
         bat1_ah: "sensor.none",
@@ -276,226 +273,80 @@ class PowerFlowCard extends LitElement {
 
   render() {
     const config = this._config;
-    const stateObj = this.hass.states[
-      config.entities.day_battery_discharge_71
-    ] || { state: "0" };
-    const stateObj1 = this.hass.states[
-      config.entities.day_battery_charge_70
-    ] || { state: "0" };
-    const stateObj2 = this.hass.states[config.entities.day_load_energy_84] || {
-      state: "0",
-    };
-    const stateObj3 = this.hass.states[config.entities.day_grid_import_76] || {
-      state: "0",
-    };
-    const stateObj4 = this.hass.states[config.entities.day_pv_energy_108] || {
-      state: "0",
-    };
-    const stateObj5 = this.hass.states[
-      config.entities.inverter_voltage_154
-    ] || { state: "0" };
-    const stateObj6 = this.hass.states[config.entities.load_frequency_192] || {
-      state: "0",
-    };
-    const stateObj7 = this.hass.states[
-      config.entities.inverter_current_164
-    ] || { state: "0" };
-    const stateObj8 = this.hass.states[config.entities.pv2_power_187] || {
-      state: "0",
-    };
-    const stateObj9 = this.hass.states[config.entities.pv1_power_186] || {
-      state: "0",
-    };
-    const stateObj11 = this.hass.states[
-      config.entities.battery_voltage_183
-    ] || { state: "0" };
-    const stateObj12 = this.hass.states[config.entities.battery_soc_184] || {
-      state: "0",
-    };
-    const stateObj13 = this.hass.states[config.entities.battery_power_190] || {
-      state: "0",
-    };
-    const stateObj14 = this.hass.states[config.entities.essential_power] || {
-      state: "0",
-    };
-    const stateObj15 = this.hass.states[config.entities.grid_ct_power_172] || {
-      state: "0",
-    };
-    const stateObj16 = this.hass.states[config.entities.pv1_voltage_109] || {
-      state: "0",
-    };
-    const stateObj17 = this.hass.states[config.entities.pv1_current_110] || {
-      state: "0",
-    };
-    const stateObj18 = this.hass.states[config.entities.pv2_voltage_111] || {
-      state: "0",
-    };
-    const stateObj19 = this.hass.states[config.entities.pv2_current_112] || {
-      state: "0",
-    };
-    const stateObj20 = this.hass.states[
-      config.entities.grid_connected_status_194
-    ] || { state: "on" };
-    const stateObj21 = this.hass.states[config.entities.inverter_status_59] || {
-      state: "",
-    };
-    const stateObj22 = this.hass.states[config.entities.inverter_power_175] || {
-      state: "0",
-    };
-    const stateObj23 = this.hass.states[config.entities.grid_power_169] || {
-      state: "0",
-    };
-    const stateObj24 = this.hass.states[config.entities.aux_power_166] || {
-      state: "0",
-    };
-    const stateObj25 = this.hass.states[config.entities.priority_load_243] || {
-      state: "undefined",
-    };
-    const stateObj26 = this.hass.states[config.entities.use_timer_248] || {
-      state: "undefined",
-    };
-    const stateObj27 = this.hass.states[config.entities.pv3_voltage_113] || {
-      state: "0",
-    };
-    const stateObj28 = this.hass.states[config.entities.pv3_current_114] || {
-      state: "0",
-    };
-    const stateObj29 = this.hass.states[config.entities.pv4_voltage_115] || {
-      state: "0",
-    };
-    const stateObj30 = this.hass.states[config.entities.pv4_current_116] || {
-      state: "0",
-    };
-    const stateObj31 = this.hass.states[config.entities.pv3_power_188] || {
-      state: "0",
-    };
-    const stateObj32 = this.hass.states[config.entities.pv4_power_189] || {
-      state: "0",
-    };
-    const stateObj33 = this.hass.states[config.entities.day_grid_export_77] || {
-      state: "0",
-    };
-    const stateObj34 = this.hass.states[config.entities.nonessential_power] || {
-      state: "0",
-    };
-    const stateObj35 = this.hass.states[
-      config.entities.battery_current_191
-    ] || { state: "0" };
-    const stateObj36 = this.hass.states[config.entities.remaining_solar] || {
-      state: "0",
-    };
-    const stateObj37 = this.hass.states[config.entities.battery_temp_182] || {
-      state: "",
-    };
-    const stateObj38 = this.hass.states[
-      config.entities.dc_transformer_temp_90
-    ] || { state: "" };
-    const stateObj39 = this.hass.states[config.entities.radiator_temp_91] || {
-      state: "",
-    };
-    const stateObj40 = this.hass.states[
-      config.entities.non_essential_load1
-    ] || { state: "0" };
-    const stateObj41 = this.hass.states[
-      config.entities.non_essential_load2
-    ] || { state: "0" };
-    const stateObj42 = this.hass.states[config.entities.essential_load1] || {
-      state: "0",
-    };
-    const stateObj43 = this.hass.states[config.entities.energy_cost] || {
-      state: "",
-    };
-    const stateObj44 = this.hass.states[config.entities.solar_sell_247] || {
-      state: "undefined",
-    };
-    const stateObj45 = this.hass.states[config.entities.essential_load2] || {
-      state: "0",
-    };
-    const stateObj46 = this.hass.states[config.entities.pv_total] || {
-      state: "0",
-    };
-    const stateObj47 = this.hass.states[
-      config.entities.aux_connected_status
-    ] || { state: "on" };
-    const stateObj48 = this.hass.states[config.entities.essential_load3] || {
-      state: "0",
-    };
-    const stateObj49 = this.hass.states[config.entities.essential_load4] || {
-      state: "0",
-    };
+    const stateObj = this.hass.states[config.entities.day_battery_discharge_71] || { state: "0" };
+    const stateObj1 = this.hass.states[config.entities.day_battery_charge_70] || { state: "0" };
+    const stateObj2 = this.hass.states[config.entities.day_load_energy_84] || {state: "0",};
+    const stateObj3 = this.hass.states[config.entities.day_grid_import_76] || {state: "0",};
+    const stateObj4 = this.hass.states[config.entities.day_pv_energy_108] || {state: "0",};
+    const stateObj5 = this.hass.states[config.entities.inverter_voltage_154] || { state: "0" };
+    const stateObj6 = this.hass.states[config.entities.load_frequency_192] || {state: "0",};
+    const stateObj7 = this.hass.states[config.entities.inverter_current_164] || { state: "0" };
+    const stateObj8 = this.hass.states[config.entities.pv2_power_187] || {state: "0",};
+    const stateObj9 = this.hass.states[config.entities.pv1_power_186] || {state: "0",};
+    const stateObj11 = this.hass.states[config.entities.battery_voltage_183] || { state: "0" };
+    const stateObj12 = this.hass.states[config.entities.battery_soc_184] || {state: "0",};
+    const stateObj13 = this.hass.states[config.entities.battery_power_190] || {state: "0",};
+    const stateObj14 = this.hass.states[config.entities.essential_power] || {state: "0",};
+    const stateObj15 = this.hass.states[config.entities.grid_ct_power_172] || {state: "0",};
+    const stateObj16 = this.hass.states[config.entities.pv1_voltage_109] || {state: "0",};
+    const stateObj17 = this.hass.states[config.entities.pv1_current_110] || {state: "0",};
+    const stateObj18 = this.hass.states[config.entities.pv2_voltage_111] || {state: "0",};
+    const stateObj19 = this.hass.states[config.entities.pv2_current_112] || {state: "0",};
+    const stateObj20 = this.hass.states[config.entities.grid_connected_status_194] || { state: "on" };
+    const stateObj21 = this.hass.states[config.entities.inverter_status_59] || {state: "",};
+    const stateObj22 = this.hass.states[config.entities.inverter_power_175] || {state: "0",};
+    const stateObj23 = this.hass.states[config.entities.grid_power_169] || {state: "0",};
+    const stateObj24 = this.hass.states[config.entities.aux_power_166] || {state: "0",};
+    const stateObj25 = this.hass.states[config.entities.priority_load_243] || {state: "undefined",};
+    const stateObj26 = this.hass.states[config.entities.use_timer_248] || {state: "undefined",};
+    const stateObj27 = this.hass.states[config.entities.pv3_voltage_113] || {state: "0",};
+    const stateObj28 = this.hass.states[config.entities.pv3_current_114] || {state: "0",};
+    const stateObj29 = this.hass.states[config.entities.pv4_voltage_115] || {state: "0",};
+    const stateObj30 = this.hass.states[config.entities.pv4_current_116] || {state: "0",};
+    const stateObj31 = this.hass.states[config.entities.pv3_power_188] || {state: "0",};
+    const stateObj32 = this.hass.states[config.entities.pv4_power_189] || {state: "0",};
+    const stateObj33 = this.hass.states[config.entities.day_grid_export_77] || {state: "0",};
+    const stateObj34 = this.hass.states[config.entities.nonessential_power] || {state: "0",};
+    const stateObj35 = this.hass.states[config.entities.battery_current_191] || { state: "0" };
+    const stateObj36 = this.hass.states[config.entities.remaining_solar] || {state: "0",};
+    const stateObj37 = this.hass.states[config.entities.battery_temp_182] || {state: "",};
+    const stateObj38 = this.hass.states[config.entities.dc_transformer_temp_90] || { state: "" };
+    const stateObj39 = this.hass.states[config.entities.radiator_temp_91] || {state: "",};
+    const stateObj40 = this.hass.states[config.entities.non_essential_load1] || { state: "0" };
+    const stateObj41 = this.hass.states[config.entities.non_essential_load2] || { state: "0" };
+    const stateObj42 = this.hass.states[config.entities.essential_load1] || {state: "0",};
+    const stateObj43 = this.hass.states[config.entities.energy_cost] || {state: "",};
+    const stateObj44 = this.hass.states[config.entities.solar_sell_247] || {state: "undefined",};
+    const stateObj45 = this.hass.states[config.entities.essential_load2] || {state: "0",};
+    const stateObj46 = this.hass.states[config.entities.pv_total] || {state: "0",};
+    const stateObj47 = this.hass.states[config.entities.aux_connected_status] || { state: "on" };
+    const stateObj48 = this.hass.states[config.entities.essential_load3] || {state: "0",};
+    const stateObj49 = this.hass.states[config.entities.essential_load4] || {state: "0",};
 
-    const stateObj52 = this.hass.states[
-      config.entities.battery1_voltage_183
-    ] || { state: "0" };
-    const stateObj53 = this.hass.states[config.entities.battery1_soc_184] || {
-      state: "0",
-    };
-    const stateObj54 = this.hass.states[config.entities.battery1_power] || {
-      state: "0",
-    };
-    const stateObj55 = this.hass.states[
-      config.entities.battery2_voltage_183
-    ] || { state: "0" };
-    const stateObj56 = this.hass.states[config.entities.battery2_soc_184] || {
-      state: "0",
-    };
-    const stateObj57 = this.hass.states[config.entities.battery2_power] || {
-      state: "0",
-    };
-    const stateObj58 = this.hass.states[
-      config.entities.battery3_voltage_183
-    ] || { state: "0" };
-    const stateObj59 = this.hass.states[config.entities.battery3_soc_184] || {
-      state: "0",
-    };
-    const stateObj60 = this.hass.states[config.entities.battery3_power] || {
-      state: "0",
-    };
-    const stateObj61 = this.hass.states[
-      config.entities.battery1_current_191
-    ] || { state: "0" };
-    const stateObj62 = this.hass.states[
-      config.entities.battery2_current_191
-    ] || { state: "0" };
-    const stateObj63 = this.hass.states[
-      config.entities.battery3_current_191
-    ] || { state: "0" };
-    const stateObj64 = this.hass.states[config.entities.battery1_temp] || {
-      state: "",
-    };
-    const stateObj65 = this.hass.states[config.entities.battery2_temp] || {
-      state: "",
-    };
-    const stateObj66 = this.hass.states[config.entities.battery3_temp] || {
-      state: "",
-    };
-    const stateObj67 = this.hass.states[config.entities.day_bat1_discharge] || {
-      state: "0",
-    };
-    const stateObj68 = this.hass.states[config.entities.day_bat1_charge] || {
-      state: "0",
-    };
-    const stateObj69 = this.hass.states[config.entities.day_bat2_discharge] || {
-      state: "0",
-    };
-    const stateObj70 = this.hass.states[config.entities.day_bat2_charge] || {
-      state: "0",
-    };
-    const stateObj71 = this.hass.states[config.entities.day_bat3_discharge] || {
-      state: "0",
-    };
-    const stateObj72 = this.hass.states[config.entities.day_bat3_charge] || {
-      state: "0",
-    };
-    const stateObj73 = this.hass.states[config.entities.bat1_switch] || {
-      state: "undefined",
-    };
-    const stateObj74 = this.hass.states[config.entities.bat2_switch] || {
-      state: "undefined",
-    };
-    const stateObj75 = this.hass.states[config.entities.bat3_switch] || {
-      state: "undefined",
-    };
+    const stateObj52 = this.hass.states[config.entities.battery1_voltage_183] || { state: "0" };
+    const stateObj53 = this.hass.states[config.entities.battery1_soc_184] || {state: "0",};
+    const stateObj54 = this.hass.states[config.entities.battery1_power] || {state: "0", };
+    const stateObj55 = this.hass.states[config.entities.battery2_voltage_183 ] || { state: "0" };
+    const stateObj56 = this.hass.states[config.entities.battery2_soc_184] || {state: "0",};
+    const stateObj57 = this.hass.states[config.entities.battery2_power] || {state: "0",};
+    const stateObj58 = this.hass.states[config.entities.battery3_voltage_183 ] || {state: "0" };
+    const stateObj59 = this.hass.states[config.entities.battery3_soc_184] || {state: "0",};
+    const stateObj60 = this.hass.states[config.entities.battery3_power] || {state: "0",};
+    const stateObj61 = this.hass.states[config.entities.battery1_current_191] || { state: "0" };
+    const stateObj62 = this.hass.states[config.entities.battery2_current_191] || { state: "0" };
+    const stateObj63 = this.hass.states[config.entities.battery3_current_191] || { state: "0" };
+    const stateObj64 = this.hass.states[config.entities.battery1_temp] || {state: "",};
+    const stateObj65 = this.hass.states[config.entities.battery2_temp] || {state: "",};
+    const stateObj66 = this.hass.states[config.entities.battery3_temp] || {state: "",};
+    const stateObj67 = this.hass.states[config.entities.day_bat1_discharge] || {state: "0",};
+    const stateObj68 = this.hass.states[config.entities.day_bat1_charge] || {state: "0",};
+    const stateObj69 = this.hass.states[config.entities.day_bat2_discharge] || {state: "0",};
+    const stateObj70 = this.hass.states[config.entities.day_bat2_charge] || {state: "0",};
+    const stateObj71 = this.hass.states[config.entities.day_bat3_discharge] || {state: "0",};
+    const stateObj72 = this.hass.states[config.entities.day_bat3_charge] || {state: "0",};
+    const stateObj73 = this.hass.states[config.entities.bat1_switch] || {state: "undefined",};
+    const stateObj74 = this.hass.states[config.entities.bat2_switch] || {state: "undefined",};
+    const stateObj75 = this.hass.states[config.entities.bat3_switch] || {state: "undefined",};
 
     const stateObj80 = this.hass.states[config.entities.bat1_ah] || {state: "undefined",};
     const stateObj81 = this.hass.states[config.entities.bat1_mid] || {state: "undefined",};
@@ -515,48 +366,22 @@ class PowerFlowCard extends LitElement {
     const stateObj93 = this.hass.states[config.entities.bat3_min] || {state: "undefined",};
     const stateObj94 = this.hass.states[config.entities.bat3_max] || {state: "undefined",};
 
-    const stateObj100 = this.hass.states[config.entities.Text] || {
-      state: "0",
-    };
-    const stateObj101 = this.hass.states[config.entities.Tsalon] || {
-      state: "0",
-    };
-    const stateObj102 = this.hass.states[config.entities.Tchambre] || {
-      state: "0",
-    };
-    const stateObj103 = this.hass.states[config.entities.Tbal1] || {
-      state: "0",
-    };
-    const stateObj104 = this.hass.states[config.entities.Tbal2] || {
-      state: "0",
-    };
-    const stateObj105 = this.hass.states[config.entities.Tbal3] || {
-      state: "0",
-    };
-    const stateObj106 = this.hass.states[config.entities.Tbal4] || {
-      state: "0",
-    };
-    const stateObj107 = this.hass.states[config.entities.ChargBal] || {
-      state: "0",
-    };
-    const stateObj108 = this.hass.states[config.entities.pv2_power_187] || {
-      state: "0",
-    };
-    const stateObj109 = this.hass.states[config.entities.pv1_power_186] || {
-      state: "0",
-    };
+    const stateObj100 = this.hass.states[config.entities.Text] || {state: "0",};
+    const stateObj101 = this.hass.states[config.entities.Tsalon] || {state: "0",};
+    const stateObj102 = this.hass.states[config.entities.Tchambre] || {state: "0",};
+    const stateObj103 = this.hass.states[config.entities.Tbal1] || {state: "0",};
+    const stateObj104 = this.hass.states[config.entities.Tbal2] || {state: "0",};
+    const stateObj105 = this.hass.states[config.entities.Tbal3] || {state: "0",};
+    const stateObj106 = this.hass.states[config.entities.Tbal4] || {state: "0",};
+    const stateObj107 = this.hass.states[config.entities.ChargBal] || {state: "0",};
+    const stateObj108 = this.hass.states[config.entities.pv2_power_187] || {state: "0",};
+    const stateObj109 = this.hass.states[config.entities.pv1_power_186] || {state: "0",};
 
     //Set defaults
     let invert_aux = config?.load?.invert_aux || "no";
-    let aux_power =
-      invert_aux === "yes"
-        ? parseInt(stateObj24.state) * -1
-        : parseInt(stateObj24.state);
+    let aux_power = invert_aux === "yes" ? parseInt(stateObj24.state) * -1 : parseInt(stateObj24.state);
     let invert_grid = config?.grid?.invert_grid || "no";
-    let grid_power =
-      invert_grid === "yes"
-        ? parseInt(stateObj15.state) * -1
-        : parseInt(stateObj15.state);
+    let grid_power = invert_grid === "yes" ? parseInt(stateObj15.state) * -1  : parseInt(stateObj15.state);
     let inverter_modern = config?.inverter?.modern || "yes";
     let load_colour = config?.load?.colour || "#5fb6ad";
     let aux_colour = config?.load?.aux_colour || load_colour;
@@ -565,33 +390,15 @@ class PowerFlowCard extends LitElement {
     let grid_colour = config?.grid?.colour || "#5490c2";
     let no_grid_colour = config?.grid?.no_grid_colour || "#a40013";
     let grid_show_noness = config?.grid?.show_nonessential || "yes";
-    let grid_status = config?.entities?.grid_connected_status_194
-      ? stateObj20.state
-      : "on";
-    let aux_status = config?.entities?.aux_connected_status
-      ? stateObj47.state
-      : "on";
-    let load_frequency = config?.entities?.load_frequency_192
-      ? stateObj6.state
-      : 0;
-    let inverter_voltage = config?.entities?.inverter_voltage_154
-      ? stateObj5.state
-      : 0;
-    let inverter_current = config?.entities?.inverter_current_164
-      ? stateObj7.state
-      : 0;
-    let battery_voltage = config?.entities?.battery_voltage_183
-      ? stateObj11.state
-      : 0;
+    let grid_status = config?.entities?.grid_connected_status_194 ? stateObj20.state : "on";
+    let aux_status = config?.entities?.aux_connected_status  ? stateObj47.state  : "on";
+    let load_frequency = config?.entities?.load_frequency_192 ? stateObj6.state : 0;
+    let inverter_voltage = config?.entities?.inverter_voltage_154 ? stateObj5.state : 0;
+    let inverter_current = config?.entities?.inverter_current_164 ? stateObj7.state : 0;
+    let battery_voltage = config?.entities?.battery_voltage_183 ? stateObj11.state : 0;
 
     let noness_dual_load = config?.grid?.additional_loads;
-    if (
-      noness_dual_load !== "no" &&
-      noness_dual_load !== "one" &&
-      noness_dual_load !== "two"
-    ) {
-      noness_dual_load = "no";
-    }
+    if ( noness_dual_load !== "no" && noness_dual_load !== "one" && noness_dual_load !== "two") {noness_dual_load = "no";}
 
     let grid_showdailybuy = config?.grid?.show_daily_buy || "no";
     let grid_showdailysell = config?.grid?.show_daily_sell || "no";
@@ -601,20 +408,10 @@ class PowerFlowCard extends LitElement {
     let solar_showdaily = config?.solar?.show_daily || "no";
 
     let show_aux = config?.load?.show_aux;
-    if (show_aux !== "no" && show_aux !== "yes") {
-      show_aux = "no";
-    }
+    if (show_aux !== "no" && show_aux !== "yes") {show_aux = "no";}
 
     let additional_load = config?.load?.additional_loads;
-    if (
-      additional_load !== "no" &&
-      additional_load !== "one" &&
-      additional_load !== "two" &&
-      additional_load !== "three" &&
-      additional_load !== "four"
-    ) {
-      additional_load = "no";
-    }
+    if (additional_load !== "no" && additional_load !== "one" && additional_load !== "two" && additional_load !== "three" && additional_load !== "four") {additional_load = "no";}
 
     let aux_type = config?.load?.aux_type || "default"; //valid options are gen,inverter, default, gen, boiler, pump, aircon
     let nonessential_icon = config?.grid?.nonessential_icon || "default"; //valid options are default, oven, boiler, pump, aircon
@@ -626,54 +423,27 @@ class PowerFlowCard extends LitElement {
     let load4_icon = config?.grid?.load4_icon || "default"; //valid options are default, oven, boiler, pump
     let load3e_icon = config?.load?.load3_icon || "default"; //valid options are boiler, aircon, pump
     let load4e_icon = config?.load?.load4_icon || "default"; //valid options are boiler, aircon, pump
-    let remaining_solar = config.entities.remaining_solar
-      ? parseFloat(stateObj36.state).toFixed(1)
-      : "false";
+    let remaining_solar = config.entities.remaining_solar ? parseFloat(stateObj36.state).toFixed(1) : "false";
     let font = config?.large_font || "no";
     let panel = config?.panel_mode || "no";
     let inverter_colour = config?.inverter?.colour || "grey";
     let useautarky = config?.inverter?.autarky || "power";
-    let usetimer =
-      config?.entities.use_timer_248 === "no" || !config?.entities.use_timer_248
-        ? "no"
-        : stateObj26.state;
-    let priority =
-      config?.entities.priority_load_243 === "no" ||
-      !config?.entities.priority_load_243
-        ? "no"
-        : stateObj25.state;
-    let battery_power =
-      config?.battery?.invert_power === "yes"
-        ? parseInt(stateObj13.state) * -1
-        : parseInt(stateObj13.state);
+    let usetimer = config?.entities.use_timer_248 === "no" || !config?.entities.use_timer_248  ? "no"  : stateObj26.state;
+    let priority = config?.entities.priority_load_243 === "no" || !config?.entities.priority_load_243 ? "no" : stateObj25.state;
+    let battery_power = config?.battery?.invert_power === "yes" ? parseInt(stateObj13.state) * -1  : parseInt(stateObj13.state);
     let height = config?.card_height || "396px"; //396px
     let bat_full = config?.battery?.full_capacity || "80";
     let bat_empty = config?.battery?.empty_capacity || "30";
     let width = config?.card_width || "100%";
 
-    let battery1_power =
-      config?.battery?.invert_power1 === "yes"
-        ? parseInt(stateObj54.state) * -1
-        : parseInt(stateObj54.state);
-    let battery2_power =
-      config?.battery?.invert_power2 === "yes"
-        ? parseInt(stateObj57.state) * -1
-        : parseInt(stateObj57.state);
-    let battery3_power =
-      config?.battery?.invert_power3 === "yes"
-        ? parseInt(stateObj60.state) * -1
-        : parseInt(stateObj60.state);
+    let battery1_power = config?.battery?.invert_power1 === "yes" ? parseInt(stateObj54.state) * -1 : parseInt(stateObj54.state);
+    let battery2_power = config?.battery?.invert_power2 === "yes" ? parseInt(stateObj57.state) * -1 : parseInt(stateObj57.state);
+    let battery3_power = config?.battery?.invert_power3 === "yes" ? parseInt(stateObj60.state) * -1 : parseInt(stateObj60.state);
 
     //totalsolar = pv1_power_186 + pv2_power_187 + pv3_power_188 + pv4_power_189
-    let totalsolar =
-      parseInt(parseFloat(stateObj8.state || 0).toFixed(0)) +
-      parseInt(parseFloat(stateObj9.state || 0).toFixed(0)) +
-      parseInt(parseFloat(stateObj31.state || 0).toFixed(0)) +
-      parseInt(parseFloat(stateObj32.state || 0).toFixed(0));
+    let totalsolar = parseInt(parseFloat(stateObj8.state || 0).toFixed(0)) + parseInt(parseFloat(stateObj9.state || 0).toFixed(0)) + parseInt(parseFloat(stateObj31.state || 0).toFixed(0)) + parseInt(parseFloat(stateObj32.state || 0).toFixed(0));
 
-    let total_pv = config?.entities?.pv_total
-      ? parseInt(stateObj46.state)
-      : totalsolar;
+    let total_pv = config?.entities?.pv_total ? parseInt(stateObj46.state) : totalsolar;
 
     //essential = inverter_power_175 + grid_power_169 - aux_power_166
     let essential =
@@ -1084,18 +854,18 @@ class PowerFlowCard extends LitElement {
            <svg x="89%" y="94%" width="10%" height="10%" viewBox="0 0 570.118 82.033" xmlns="http://www.w3.org/2000/svg"><g id="svgGroup" stroke-linecap="round" fill-rule="evenodd" font-size="12pt" stroke="#000" stroke-width="0.5mm" fill="#fff" style="stroke:#000;stroke-width:0.1mm;fill:#000"><path fill="#0589b6" d="M 149.317 75 L 148.145 72.559 A 41 41 0 0 1 136.909 76.175 A 36.833 36.833 0 0 1 130.957 76.66 A 33.385 33.385 0 0 1 118.032 74.217 A 31.364 31.364 0 0 1 107.715 67.187 A 32.983 32.983 0 0 1 98.07 45.589 A 44.298 44.298 0 0 1 97.949 42.285 A 42.351 42.351 0 0 1 99.231 31.599 A 31.282 31.282 0 0 1 106.348 18.262 Q 114.649 9.277 128.125 9.277 A 28.858 28.858 0 0 1 140.574 11.928 A 28.532 28.532 0 0 1 148.731 17.773 A 32.037 32.037 0 0 1 157.235 34.245 A 46.425 46.425 0 0 1 158.106 43.457 Q 158.106 49.679 156.289 53.644 A 11.242 11.242 0 0 1 151.66 58.887 A 8.065 8.065 0 0 1 148.784 59.961 A 7.656 7.656 0 0 1 147.559 60.059 Q 142.578 59.863 142.481 54.102 L 142.481 36.328 A 17.659 17.659 0 0 0 141.611 30.827 Q 139.662 25.173 133.354 23.576 A 22.798 22.798 0 0 0 127.93 22.949 A 33.441 33.441 0 0 0 123.345 23.239 Q 116.956 24.127 114.453 27.734 Q 113.623 29.118 113.577 30.414 A 4.281 4.281 0 0 0 113.574 30.566 Q 114.113 33.26 116.551 33.807 A 5.359 5.359 0 0 0 116.992 33.887 A 5.022 5.022 0 0 0 118.572 33.655 Q 120.084 33.155 120.77 31.578 A 5.567 5.567 0 0 0 120.996 30.957 A 17.975 17.975 0 0 1 121.051 30.743 Q 121.114 30.504 121.203 30.187 A 64.392 64.392 0 0 1 121.289 29.883 A 11.143 11.143 0 0 1 121.747 28.381 Q 122.534 26.367 123.926 25.781 A 6.11 6.11 0 0 1 125.41 25.325 Q 126.128 25.195 126.953 25.195 Q 135.031 25.39 135.156 34.216 A 19.409 19.409 0 0 1 135.156 34.277 L 135.156 39.844 A 80.694 80.694 0 0 0 127.996 40.174 Q 116.479 41.268 113.018 45.968 A 7.78 7.78 0 0 0 112.793 46.289 A 9.43 9.43 0 0 0 111.329 49.956 A 12.823 12.823 0 0 0 111.133 52.246 A 12.334 12.334 0 0 0 111.665 56.002 Q 112.876 59.797 116.836 61.439 A 13.059 13.059 0 0 0 117.871 61.816 A 15.566 15.566 0 0 0 122.168 62.402 Q 128.711 62.402 133.008 57.715 A 11.064 11.064 0 0 0 134.45 55.807 A 9.442 9.442 0 0 0 135.059 54.59 A 8.169 8.169 0 0 0 139.337 60.733 A 13.247 13.247 0 0 0 142.285 61.914 A 15.434 15.434 0 0 0 145.668 62.472 A 18.015 18.015 0 0 0 146.68 62.5 A 17.714 17.714 0 0 0 153.472 61.237 A 16.489 16.489 0 0 0 159.961 56.348 Q 164.453 50.977 164.453 42.48 Q 164.453 23.34 151.172 13.477 A 35.372 35.372 0 0 0 132.534 6.68 A 44.712 44.712 0 0 0 129.004 6.543 A 46.45 46.45 0 0 0 116.082 8.239 A 33.436 33.436 0 0 0 97.949 20.898 A 38.217 38.217 0 0 0 90.822 40.308 A 48.58 48.58 0 0 0 90.625 44.727 A 36.456 36.456 0 0 0 92.887 57.8 A 32.495 32.495 0 0 0 102.442 71.094 A 38.239 38.239 0 0 0 126.36 80.14 A 48.514 48.514 0 0 0 128.223 80.176 A 45.502 45.502 0 0 0 149.317 75 Z M 183.887 24.414 L 191.211 24.414 L 191.211 21.973 L 171.875 21.973 L 171.875 24.414 L 176.27 24.414 L 188.477 57.129 Q 190.527 62.695 192.676 63.574 Q 193.561 63.896 194.777 63.953 A 11.503 11.503 0 0 0 195.313 63.965 L 197.266 63.965 L 205.762 38.379 L 212.305 57.129 Q 214.015 62.17 215.809 63.394 A 2.62 2.62 0 0 0 216.113 63.574 Q 216.777 63.84 217.757 63.925 A 11.519 11.519 0 0 0 218.75 63.965 L 220.313 63.965 L 232.129 27.93 A 13.268 13.268 0 0 1 232.575 26.731 Q 233.405 24.817 234.473 24.512 A 4.931 4.931 0 0 1 235.053 24.433 A 6.304 6.304 0 0 1 235.547 24.414 Q 236.529 24.414 237.124 24.128 A 1.497 1.497 0 0 0 237.988 23.047 A 4.931 4.931 0 0 0 238.067 22.467 A 6.304 6.304 0 0 0 238.086 21.973 L 223.633 21.973 L 223.633 24.414 L 230.469 24.414 L 219.629 58.105 L 208.203 24.414 L 215.039 24.414 L 215.039 21.973 L 200 21.973 L 204.395 34.375 L 196.289 58.398 L 183.887 24.414 Z M 437.109 61.035 L 432.227 61.035 L 432.227 39.941 A 20.105 20.105 0 0 1 432.82 34.893 A 12.857 12.857 0 0 1 438.379 27.051 A 10.394 10.394 0 0 1 441.131 25.756 A 8.879 8.879 0 0 1 443.652 25.391 Q 448.828 25.391 451.276 29.592 A 11.814 11.814 0 0 1 451.953 30.957 A 14.572 14.572 0 0 1 452.938 35.002 A 17.926 17.926 0 0 1 453.027 36.816 L 453.027 55.176 Q 453.027 58.382 451.933 59.748 A 2.598 2.598 0 0 1 450.879 60.547 A 5.838 5.838 0 0 1 450.015 60.772 Q 448.63 61.035 446.192 61.035 L 446.192 63.477 L 467.676 63.477 A 4.699 4.699 0 0 0 467.611 62.657 Q 467.367 61.287 466.211 61.133 Q 465.92 61.06 465.519 61.041 A 6.178 6.178 0 0 0 465.234 61.035 L 460.352 61.035 L 460.352 36.816 Q 460.352 26.172 453.32 22.363 Q 450.586 20.996 447.461 20.996 A 16.187 16.187 0 0 0 439.9 22.753 A 16.609 16.609 0 0 0 435.352 26.27 Q 433.301 28.516 432.227 31.348 L 432.227 0 L 417.578 0 L 417.578 2.441 L 424.902 2.441 L 424.902 55.176 A 12.133 12.133 0 0 1 424.781 56.968 Q 424.454 59.146 423.249 60.073 A 3.109 3.109 0 0 1 422.363 60.547 A 6.814 6.814 0 0 1 421.424 60.777 Q 419.991 61.035 417.578 61.035 L 417.578 63.477 L 439.551 63.477 A 4.699 4.699 0 0 0 439.486 62.657 Q 439.242 61.287 438.086 61.133 Q 437.795 61.06 437.394 61.041 A 6.178 6.178 0 0 0 437.109 61.035 Z M 348.633 61.035 L 344.238 61.035 L 344.238 46.582 L 349.609 41.602 L 363.379 63.477 L 376.367 63.477 A 4.699 4.699 0 0 0 376.302 62.657 Q 376.058 61.287 374.902 61.133 Q 374.611 61.06 374.211 61.041 A 6.178 6.178 0 0 0 373.926 61.035 L 370.41 61.035 L 354.688 36.816 L 363.867 28.223 Q 367.087 25.187 368.834 24.664 A 3.005 3.005 0 0 1 369.043 24.609 A 6.339 6.339 0 0 1 369.928 24.457 A 8.487 8.487 0 0 1 370.801 24.414 A 4.699 4.699 0 0 0 371.62 24.349 Q 372.991 24.105 373.145 22.949 Q 373.242 22.461 373.242 21.973 L 356.641 21.973 L 356.641 24.414 L 363.965 24.414 L 344.238 42.676 L 344.238 0 L 329.59 0 L 329.59 2.441 L 336.914 2.441 L 336.914 55.176 A 12.133 12.133 0 0 1 336.793 56.968 Q 336.466 59.146 335.261 60.073 A 3.109 3.109 0 0 1 334.375 60.547 A 6.814 6.814 0 0 1 333.435 60.777 Q 332.002 61.035 329.59 61.035 L 329.59 63.477 L 351.074 63.477 A 4.699 4.699 0 0 0 351.009 62.657 Q 350.765 61.287 349.609 61.133 Q 349.318 61.06 348.918 61.041 A 6.178 6.178 0 0 0 348.633 61.035 Z M 79.199 61.035 L 74.317 61.035 L 74.317 21.973 L 58.984 21.973 L 58.984 24.414 L 66.992 24.414 L 66.992 45.508 A 19.81 19.81 0 0 1 66.391 50.543 A 13.119 13.119 0 0 1 60.84 58.398 A 11.158 11.158 0 0 1 58.101 59.775 A 9.205 9.205 0 0 1 55.176 60.254 A 11.494 11.494 0 0 1 51.495 59.709 Q 47.936 58.508 46.548 54.666 A 13.989 13.989 0 0 1 45.899 52.051 A 19.35 19.35 0 0 1 45.731 50.266 A 23.303 23.303 0 0 1 45.703 49.121 L 45.703 21.973 L 30.859 21.973 L 30.859 24.414 L 38.379 24.414 L 38.379 47.656 Q 38.466 62.544 49.497 64.237 A 19.69 19.69 0 0 0 52.344 64.453 A 14.419 14.419 0 0 0 63.299 59.728 A 18.733 18.733 0 0 0 64.356 58.496 Q 66.113 56.25 67.188 53.516 L 67.871 63.477 L 81.641 63.477 A 4.699 4.699 0 0 0 81.576 62.657 Q 81.332 61.287 80.176 61.133 Q 79.884 61.06 79.484 61.041 A 6.178 6.178 0 0 0 79.199 61.035 Z M 544.336 79.59 L 537.5 79.59 L 537.5 59.375 Q 542.871 64.063 549.902 64.453 A 18.635 18.635 0 0 0 563.71 58.702 A 23.099 23.099 0 0 0 564.453 57.91 A 22.065 22.065 0 0 0 569.827 46.046 A 30.063 30.063 0 0 0 570.117 41.797 A 32.133 32.133 0 0 0 569.486 35.216 Q 568.147 28.819 563.965 24.902 A 14.903 14.903 0 0 0 553.898 21 A 19.11 19.11 0 0 0 553.516 20.996 Q 544.043 20.996 539.356 28.516 Q 538.184 30.469 537.402 32.617 L 536.914 21.973 L 522.852 21.973 L 522.852 24.414 L 530.176 24.414 L 530.176 73.73 A 12.133 12.133 0 0 1 530.054 75.523 Q 529.728 77.7 528.522 78.628 A 3.109 3.109 0 0 1 527.637 79.102 A 6.814 6.814 0 0 1 526.697 79.332 Q 525.264 79.59 522.852 79.59 L 522.852 82.031 L 546.777 82.031 A 4.699 4.699 0 0 0 546.712 81.212 Q 546.468 79.842 545.313 79.688 Q 545.021 79.615 544.621 79.596 A 6.178 6.178 0 0 0 544.336 79.59 Z M 408.887 20.41 L 408.887 32.617 L 406.348 32.617 Q 406.195 25.571 400.155 23.991 A 15.539 15.539 0 0 0 396.387 23.535 A 19.05 19.05 0 0 0 393.271 23.769 Q 391.686 24.033 390.486 24.595 A 6.038 6.038 0 0 0 387.305 27.832 A 6.287 6.287 0 0 0 386.817 30.273 Q 386.817 33.496 390.383 35.971 A 18.492 18.492 0 0 0 392.871 37.402 A 25.805 25.805 0 0 0 393.652 37.775 Q 394.971 38.379 397.168 39.258 A 67.61 67.61 0 0 1 400.794 40.851 Q 405.737 43.213 407.715 45.41 A 10.681 10.681 0 0 1 410.547 52.832 Q 410.547 58.998 405.443 61.96 A 16.241 16.241 0 0 1 402.149 63.379 A 21.055 21.055 0 0 1 397.213 64.368 A 25.362 25.362 0 0 1 395.117 64.453 Q 388.086 64.355 382.91 60.938 A 7.784 7.784 0 0 1 382.858 61.88 Q 382.652 63.556 381.641 63.867 Q 381.055 63.965 380.274 63.965 L 380.274 49.121 L 383.008 49.121 A 21.648 21.648 0 0 0 383.56 53.88 Q 385.175 60.53 391.493 61.609 A 15.416 15.416 0 0 0 393.945 61.816 A 17.142 17.142 0 0 0 397.171 61.535 Q 401.297 60.743 403.027 57.715 Q 403.906 56.25 403.906 54.492 A 5.757 5.757 0 0 0 402.463 50.739 Q 400.985 48.962 397.994 47.483 A 23.826 23.826 0 0 0 397.949 47.461 Q 396.727 46.803 393.967 45.602 A 161.457 161.457 0 0 0 393.75 45.508 Q 385.742 42.188 383.106 39.258 A 11.037 11.037 0 0 1 380.274 31.738 Q 380.274 26.481 384.792 23.661 A 15.766 15.766 0 0 1 387.695 22.266 A 20.528 20.528 0 0 1 393.515 21.048 A 24.19 24.19 0 0 1 395.117 20.996 A 25.545 25.545 0 0 1 400.597 21.558 A 19.377 19.377 0 0 1 406.25 23.73 Q 406.25 20.898 407.617 20.508 A 7.146 7.146 0 0 1 408.388 20.424 A 8.832 8.832 0 0 1 408.887 20.41 Z M 312.988 61.035 L 305.957 61.035 L 305.957 41.602 A 23.402 23.402 0 0 1 306.775 35.254 A 17.536 17.536 0 0 1 311.426 27.344 Q 313.112 25.735 314.377 25.328 A 2.771 2.771 0 0 1 315.039 25.195 A 2.428 2.428 0 0 1 316.484 25.697 Q 317.265 26.263 317.97 27.468 A 10.411 10.411 0 0 1 318.067 27.637 A 15.603 15.603 0 0 0 318.788 28.79 Q 319.544 29.879 320.251 30.385 A 2.443 2.443 0 0 0 320.996 30.762 A 3.69 3.69 0 0 0 322.15 30.957 A 3.522 3.522 0 0 0 322.168 30.957 A 4.546 4.546 0 0 0 323.646 30.733 Q 325.317 30.161 325.879 28.125 A 3.69 3.69 0 0 0 326.074 26.971 A 3.522 3.522 0 0 0 326.074 26.953 A 6.396 6.396 0 0 0 325.738 24.805 Q 324.846 22.292 321.582 21.582 A 10.169 10.169 0 0 0 320.4 21.414 A 8.438 8.438 0 0 0 319.727 21.387 Q 313.867 21.387 309.277 26.367 Q 307.129 28.711 305.859 31.641 L 305.469 21.973 L 291.309 21.973 L 291.309 24.414 L 298.633 24.414 L 298.633 55.176 A 12.133 12.133 0 0 1 298.511 56.968 Q 298.185 59.146 296.979 60.073 A 3.109 3.109 0 0 1 296.094 60.547 A 6.814 6.814 0 0 1 295.154 60.777 Q 293.721 61.035 291.309 61.035 L 291.309 63.477 L 315.43 63.477 A 4.699 4.699 0 0 0 315.365 62.657 Q 315.121 61.287 313.965 61.133 Q 313.674 61.06 313.273 61.041 A 6.178 6.178 0 0 0 312.988 61.035 Z M 21.289 21.973 L 6.152 21.973 L 6.152 24.414 L 13.965 24.414 L 13.965 70.117 A 36.055 36.055 0 0 1 13.749 73.187 Q 13.005 79.51 9.961 79.59 A 2.279 2.279 0 0 1 7.964 78.485 Q 7.565 77.883 7.324 76.953 Q 6.59 74.343 5.924 73.436 A 1.808 1.808 0 0 0 5.664 73.145 A 3.445 3.445 0 0 0 3.711 72.559 Q 1.001 72.559 0.213 74.815 A 4.827 4.827 0 0 0 0.098 75.195 Q 0 75.684 0 76.074 A 4.784 4.784 0 0 0 1.94 79.954 Q 2.683 80.549 3.71 81.033 A 12.331 12.331 0 0 0 4.199 81.25 Q 6.152 82.031 8.203 82.031 Q 14.942 82.031 18.652 75.977 A 18.175 18.175 0 0 0 20.671 70.747 Q 21.289 68.01 21.289 64.746 L 21.289 21.973 Z M 263.379 20.996 A 22.374 22.374 0 0 0 254.908 22.557 A 20.755 20.755 0 0 0 247.754 27.441 A 20.284 20.284 0 0 0 242.015 41.186 A 26.594 26.594 0 0 0 241.992 42.285 A 26.611 26.611 0 0 0 243.042 49.978 A 19.554 19.554 0 0 0 250.977 60.742 A 21.097 21.097 0 0 0 263.086 64.453 A 21.669 21.669 0 0 0 271.412 62.895 A 20.296 20.296 0 0 0 278.613 57.812 Q 284.277 51.758 284.277 42.676 A 26.344 26.344 0 0 0 283.3 35.284 A 19.01 19.01 0 0 0 275.195 24.414 Q 269.824 20.996 263.379 20.996 Z M 495.508 20.996 A 22.374 22.374 0 0 0 487.036 22.557 A 20.755 20.755 0 0 0 479.883 27.441 A 20.284 20.284 0 0 0 474.144 41.186 A 26.594 26.594 0 0 0 474.121 42.285 A 26.611 26.611 0 0 0 475.171 49.978 A 19.554 19.554 0 0 0 483.106 60.742 A 21.097 21.097 0 0 0 495.215 64.453 A 21.669 21.669 0 0 0 503.541 62.895 A 20.296 20.296 0 0 0 510.742 57.812 Q 516.406 51.758 516.406 42.676 A 26.344 26.344 0 0 0 515.429 35.284 A 19.01 19.01 0 0 0 507.324 24.414 Q 501.953 20.996 495.508 20.996 Z M 250.69 36.619 A 42.481 42.481 0 0 0 250.293 42.676 A 45.436 45.436 0 0 0 250.433 46.321 A 34.318 34.318 0 0 0 250.977 50.293 Q 252.683 58.167 257.695 60.75 A 12.239 12.239 0 0 0 263.379 62.012 A 13.437 13.437 0 0 0 266.992 61.523 A 10.262 10.262 0 0 0 270.867 59.311 Q 274.521 55.983 275.562 48.708 A 45.562 45.562 0 0 0 275.977 42.285 Q 275.977 39.453 275.684 37.109 A 31.555 31.555 0 0 0 275.326 34.917 Q 273.786 27.255 268.848 24.707 A 12.403 12.403 0 0 0 263.086 23.438 A 13.043 13.043 0 0 0 258.594 24.219 A 10.633 10.633 0 0 0 255.587 26.036 Q 251.743 29.341 250.69 36.619 Z M 482.819 36.619 A 42.481 42.481 0 0 0 482.422 42.676 A 45.436 45.436 0 0 0 482.562 46.321 A 34.318 34.318 0 0 0 483.106 50.293 Q 484.812 58.167 489.824 60.75 A 12.239 12.239 0 0 0 495.508 62.012 A 13.437 13.437 0 0 0 499.121 61.523 A 10.262 10.262 0 0 0 502.996 59.311 Q 506.65 55.983 507.691 48.708 A 45.562 45.562 0 0 0 508.106 42.285 Q 508.106 39.453 507.813 37.109 A 31.555 31.555 0 0 0 507.455 34.917 Q 505.915 27.255 500.977 24.707 A 12.403 12.403 0 0 0 495.215 23.438 A 13.043 13.043 0 0 0 490.723 24.219 A 10.633 10.633 0 0 0 487.716 26.036 Q 483.872 29.341 482.819 36.619 Z M 555.739 26.307 A 9.929 9.929 0 0 0 550.391 24.902 A 10.657 10.657 0 0 0 543.945 27.051 A 14.193 14.193 0 0 0 539.483 32.794 Q 538.383 35.267 537.864 38.436 A 38.461 38.461 0 0 0 537.402 44.629 Q 537.402 50.098 538.867 54.102 A 16.086 16.086 0 0 0 540.275 57.094 Q 543.29 62.012 549.219 62.012 A 12.853 12.853 0 0 0 549.383 62.011 A 11.131 11.131 0 0 0 554.102 60.937 Q 560.008 58.022 561.393 48.923 A 41.047 41.047 0 0 0 561.817 42.773 A 40.863 40.863 0 0 0 561.666 39.191 A 30.452 30.452 0 0 0 561.133 35.547 A 26.565 26.565 0 0 0 560.867 34.408 Q 559.36 28.557 555.739 26.307 Z M 135.156 42.285 L 135.156 49.121 A 15.854 15.854 0 0 1 133.655 53.182 A 11.456 11.456 0 0 1 128.711 58.008 A 9.56 9.56 0 0 1 126.88 58.667 A 7.521 7.521 0 0 1 125.098 58.887 A 6.215 6.215 0 0 1 122.583 58.403 Q 120.32 57.413 119.336 54.395 A 11.654 11.654 0 0 1 118.75 50.699 A 12.647 12.647 0 0 1 118.75 50.684 A 6.682 6.682 0 0 1 122.625 44.474 Q 125.362 42.998 130.033 42.537 A 38.183 38.183 0 0 1 130.664 42.48 A 48.131 48.131 0 0 1 133.997 42.297 A 54.521 54.521 0 0 1 135.156 42.285 Z M 22.266 7.715 A 5.973 5.973 0 0 0 21.924 5.639 Q 21.338 4.048 19.749 3.106 A 6.843 6.843 0 0 0 19.238 2.832 A 6.672 6.672 0 0 0 18.091 2.466 A 5.163 5.163 0 0 0 16.992 2.344 A 5.777 5.777 0 0 0 14.873 2.713 Q 13.395 3.291 12.482 4.775 A 6.97 6.97 0 0 0 12.109 5.469 A 5.368 5.368 0 0 0 11.621 7.715 Q 11.621 11.018 14.314 12.444 A 6.836 6.836 0 0 0 14.844 12.695 Q 15.918 13.086 16.992 13.086 A 5.745 5.745 0 0 0 19.015 12.749 Q 20.859 12.061 21.777 9.961 A 5.368 5.368 0 0 0 22.266 7.715 Z" vector-effect="non-scaling-stroke"/></g></svg>
            <svg version="1.0" xmlns="http://www.w3.org/2000/svg" x="1%" y="1%"  width="33.75pt" height="22.5pt" class="${inverter_modern === "victron" ? "" : "st12"}" viewBox="0 0 300.000000 194.000000"  preserveAspectRatio="xMidYMid meet"> <g transform="translate(0.000000,194.000000) scale(0.100000,-0.100000)" fill="#2a8ae5" stroke="none"> <path d="M850 1830 c-69 -12 -129 -48 -200 -120 -92 -92 -162 -251 -190 -425 -5 -33 -16 -103 -25 -155 -20 -123 -13 -183 25 -210 39 -28 74 -26 99 6 17 22 21 42 22 113 1 97 9 153 38 261 44 163 94 263 135 274 16 4 36 27 59 68 19 35 56 86 81 113 67 73 56 93 -44 75z"/> <path d="M468 1816 c-156 -56 -252 -180 -321 -416 -19 -67 -66 -359 -67 -418 0 -46 58 -107 92 -97 41 12 55 43 62 133 12 164 65 390 107 458 10 17 19 38 19 45 0 16 55 77 135 150 75 69 136 139 130 150 -9 13 -114 10 -157 -5z"/> <path d="M1110 1805 c-105 -45 -193 -138 -241 -256 -15 -36 -31 -74 -37 -85 -27 -50 -60 -282 -61 -430 -1 -82 1 -93 22 -112 27 -25 55 -28 82 -8 19 14 19 16 49 251 14 108 56 269 76 289 6 6 10 18 10 28 0 22 64 95 91 103 11 4 28 23 39 43 40 73 58 99 98 142 22 25 39 47 37 51 -10 16 -113 5 -165 -16z"/> <path d="M1505 1821 c-120 -22 -217 -108 -288 -254 -24 -51 -47 -112 -51 -136 -4 -24 -10 -49 -14 -55 -30 -47 -54 -401 -30 -446 15 -27 37 -35 73 -26 31 8 36 24 51 156 16 156 40 283 58 319 9 16 16 39 16 49 0 11 9 31 20 45 12 14 26 40 31 57 11 31 45 48 73 37 31 -12 108 -213 126 -327 7 -41 14 -82 17 -90 3 -8 9 -99 13 -203 8 -176 21 -257 40 -257 17 0 29 67 35 185 5 103 10 126 32 167 l26 48 -13 107 c-7 60 -18 119 -25 133 -7 14 -16 47 -19 73 -8 51 -51 175 -67 192 -5 5 -9 21 -9 36 0 28 15 39 56 39 34 0 126 -89 163 -157 42 -77 81 -214 88 -310 4 -58 12 -92 27 -115 28 -45 56 -107 56 -124 0 -27 18 -14 24 18 3 17 18 56 32 86 25 53 26 59 15 131 -19 133 -39 224 -60 279 -12 29 -21 60 -21 69 0 22 -87 153 -124 186 -57 51 -153 88 -236 92 -41 2 -93 0 -115 -4z"/> <path d="M2992 1605 c0 -16 2 -22 5 -12 2 9 2 23 0 30 -3 6 -5 -1 -5 -18z"/> <path d="M1357 1228 c-3 -13 -9 -77 -13 -143 -6 -103 -11 -128 -35 -175 -32 -65 -31 -108 3 -270 11 -52 24 -117 30 -145 5 -27 13 -54 18 -60 4 -5 15 -34 24 -62 10 -29 22 -55 27 -58 5 -4 9 -17 9 -30 0 -91 -188 41 -242 170 -34 82 -67 202 -73 274 -6 55 -16 90 -44 144 -40 79 -57 92 -67 50 -4 -15 -15 -40 -25 -55 -23 -32 -23 -57 -3 -173 9 -49 19 -112 23 -140 4 -27 14 -65 24 -84 9 -19 17 -41 17 -50 1 -20 47 -114 82 -165 30 -43 150 -125 185 -126 12 0 25 -4 28 -10 10 -16 150 -12 208 6 80 24 117 45 168 96 55 56 130 200 154 298 29 118 33 144 44 285 14 183 1 235 -60 235 -44 0 -59 -33 -69 -152 -12 -132 -37 -277 -54 -303 -7 -11 -16 -37 -19 -58 -3 -20 -15 -50 -26 -66 -12 -16 -21 -36 -21 -45 0 -21 -44 -48 -71 -44 -16 2 -31 19 -50 58 -41 81 -79 185 -79 215 0 14 -6 56 -14 93 -8 37 -17 144 -21 238 -6 170 -20 264 -41 271 -7 2 -14 -6 -17 -19z"/> <path d="M2140 1020 c-11 -11 -20 -26 -21 -32 -1 -22 -17 -169 -28 -261 -6 -49 -17 -101 -25 -115 -7 -15 -16 -43 -20 -62 -8 -47 -63 -151 -89 -170 -39 -29 -82 -77 -107 -120 -14 -24 -46 -67 -72 -94 -26 -28 -48 -54 -48 -58 -1 -31 187 20 261 71 45 29 129 127 129 148 0 6 6 16 13 22 8 6 19 30 26 53 7 24 17 48 22 54 21 26 54 217 68 389 8 101 7 124 -6 150 -9 16 -21 33 -27 37 -20 14 -56 8 -76 -12z"/> <path d="M2470 1027 c-29 -15 -39 -54 -39 -165 -1 -120 -63 -360 -114 -440 -15 -24 -40 -49 -55 -54 -19 -8 -36 -29 -57 -71 -17 -34 -55 -86 -92 -124 -35 -35 -61 -69 -57 -75 10 -15 96 -1 171 29 81 32 173 120 224 215 43 79 94 231 103 308 4 30 11 82 17 115 29 169 24 237 -21 260 -35 18 -48 18 -80 2z"/> <path d="M2801 1027 c-6 -8 -15 -57 -21 -110 -5 -53 -17 -135 -25 -183 -8 -48 -15 -99 -15 -113 0 -15 -6 -35 -13 -46 -7 -11 -19 -40 -26 -64 -19 -67 -106 -193 -152 -222 -47 -28 -149 -141 -149 -163 0 -23 91 -21 162 2 53 18 127 69 175 122 62 68 146 290 167 441 8 58 20 125 25 149 30 127 1 200 -77 200 -22 0 -45 -6 -51 -13z"/> </g> </svg> 
 
-            <rect id="load" x="58%" y="40%" width="14%" height="6%" rx="1%" ry="1%" fill="none" stroke="${load_colour}" pointer-events="all"/>          
-            <rect id="pv" x="33%" y="25%" width="14%" height="4%" rx="1%" ry="1%" fill="none" stroke="${solar_colour}" pointer-events="all" class="${config.show_solar === "no" ? "st12" : ""}"/>
-            <rect id="bat" x="33%" y="59%" width="14%" height="4%" rx="1%" ry="1%" fill="none" stroke="${battery_colour}" pointer-events="all"/>
+            <rect id="load" x="57%" y="40%" width="14%" height="6%" rx="1%" ry="1%" fill="none" stroke="${load_colour}" pointer-events="all"/>          
+            <rect id="pv" x="33%" y="25%" width="14%" height="6%" rx="1%" ry="1%" fill="none" stroke="${solar_colour}" pointer-events="all" class="${config.show_solar === "no" ? "st12" : ""}"/>
+            <rect id="bat" x="33%" y="59%" width="14%" height="6%" rx="1%" ry="1%" fill="none" stroke="${battery_colour}" pointer-events="all"/>
             <rect id="grid" x="5%" y="39%" width="14%" height="4%" rx="1%" ry="1%" fill="none" stroke="${grid_colour}" pointer-events="all" display="${config.entities.grid_ct_power_172 === "none" ? "none" : ""}"/>
             <rect id="aux" x="5%" y="44%" width="14%" height="4%" rx="1%" ry="1%" fill="none" stroke="${aux_colour}" pointer-events="all" display="${show_aux === "no" ? "none" : ""}"/>
             <rect id="pv1 "x="25%" y="10%" width="13%" height="4%" rx="1%" ry="1%" fill="none" stroke="${solar_colour}" pointer-events="all" class="${config.show_solar === "no" ? "st12" : ""}"/>
             <rect id="pv2 "x="42%" y="10%" width="13%" height="4%" rx="1%" ry="1%" fill="none" stroke="${solar_colour}" pointer-events="all" class="${config.show_solar === "no" || config.solar.mppts === "one" ? "st12" : ""}"/>
             <rect id="pv3" x="11%" y="10%" width="13%" height="4%" rx="1%" ry="1%" fill="none" stroke="${solar_colour}" pointer-events="all" class="${config.show_solar === "no" ||config.solar.mppts === "one" ||config.solar.mppts === "two"? "st12": ""}"/>
             <rect id="pv4" x="56%" y="10%" width="13%" height="4%" rx="1%" ry="1%" fill="none" stroke="${solar_colour}" pointer-events="all" class="${config.show_solar === "no" ||config.solar.mppts === "one" ||config.solar.mppts === "two" ||config.solar.mppts === "three"? "st12": ""}"/>
-            <rect id="es-load1" x="70%" y="3%" width="14%" height="4%" rx="1%" ry="1%" fill="none" stroke="${load_colour}" pointer-events="all" display="${additional_load === "no" ? "none" : ""}"/>
+            <rect id="es-load1" x="70%" y="10%" width="14%" height="4%" rx="1%" ry="1%" fill="none" stroke="${load_colour}" pointer-events="all" display="${additional_load === "no" ? "none" : ""}"/>
             <rect id="es-load2" x="70%" y="59%" width="14%" height="4%" rx="1%" ry="1%" fill="none" stroke="${load_colour}" pointer-events="all" display="${additional_load === "no" || additional_load === "one" ? "none" : ""}"/>
-            <rect id="es-load3" x="85%" y="3%" width="14%" height="4%" rx="1%" ry="1%" fill="none" stroke="${load_colour}" pointer-events="all" display="${additional_load === "no" || additional_load === "one" || additional_load === "two"? "none": ""}"/>
+            <rect id="es-load3" x="85%" y="10%" width="14%" height="4%" rx="1%" ry="1%" fill="none" stroke="${load_colour}" pointer-events="all" display="${additional_load === "no" || additional_load === "one" || additional_load === "two"? "none": ""}"/>
             <rect id="es-load4" x="85%" y="59%" width="14%" height="4%" rx="1%" ry="1%" fill="none" stroke="${load_colour}" pointer-events="all" display="${additional_load === "no" ||additional_load === "one" ||additional_load === "two" ||additional_load === "three" ? "none" : ""}"/>
             <rect id="nonesstotal" x="0.5%" y="59%" width="14%" height="5%" rx="1%" ry="1%" fill="none" stroke="${grid_colour}" pointer-events="all" class="${grid_show_noness === "no" ? "st12" : ""}"/>
             <rect id="noness1" x="0.5%" y="65%" width="14%" height="5%" rx="1%" ry="1%" display="${noness_dual_load === "one" ? "" : "none"}" fill="none" stroke="${grid_colour}" pointer-events="all" class="${grid_show_noness === "no" ? "st12" : ""}"/>
@@ -1111,13 +881,14 @@ class PowerFlowCard extends LitElement {
             <text id="duration_text" x="46%" y="51%" class="st3 left-align" fill="${config.battery.energy === " hidden" || battery_power <=0 || float==="True" ? "transparent" : `${battery_colour}` }">RUNTIME TO ${battery_capacity}% @${formattedResultTime}</text>
             <text id="duration_text_charging" x="46%" y="51%" class="st3 left-align" fill="${config.battery.energy === " hidden" || battery_power>= 0 || float === "True" ? "transparent"  : `${battery_colour}`}" >TO ${battery_capacity}% CHARGE @${formattedResultTime}</text>
             <text id="floating" x="46%" y="51%" class="st3 left-align" fill="${config.battery.energy === " hidden" || float==="False" ? "transparent" : `${battery_colour}` }">BATTERY FLOATING</text>
+
             <text id="daily_bat_charge" x="0%" y="94%" class="st3 left-align" fill="${battery_showdaily === " no" ? "transparent" : `${battery_colour}` }">DAILY CHARGE</text>
             <text id="daily_bat_dischcharge" x="0%" y="99%" class="st3 left-align" fill="${battery_showdaily === " no" ? "transparent" : `${battery_colour}` }">DAILY DISCH</text>
             <text id="daily_bat1" x="17%" y="97%" class="st3 left-align" fill="${battery_showdaily === " no" ? "transparent" : `${battery_colour}` }">AGM in/out</text>
             <text id="daily_bat2" x="32%" y="97%" class="st3 left-align" fill="${battery_showdaily === " no" ? "transparent" : `${battery_colour}` }">LTO in/out</text>
             <text id="daily_bat3" x="47%" y="97%" class="st3 left-align" fill="${battery_showdaily === " no" ? "transparent" : `${battery_colour}` }">LFP in/out</text>
 
-            <text id="daily_load" x="60%" y="39%" class="st3 left-align" fill="${load_showdaily === "no" ? "transparent" : `${load_colour}`}" >DAILY LOAD</text>
+            <text id="daily_load" x="58%" y="38%" class="st3 left-align" fill="${load_showdaily === "no" ? "transparent" : `${load_colour}`}" >DAILY LOAD</text>
 
             <text id="bat1_1" x="23%" y="86%" class="st15 left-align" fill="${battery_colour}">Ah: ${!isNaN(parseFloat(stateObj80.state)) ? parseFloat(stateObj80.state).toFixed(0) : "0"}</text>
             <text id="bat1_2" x="23%" y="88%" class="st15 left-align" fill="${battery_colour}">mid: ${!isNaN(parseFloat(stateObj81.state)) ? parseFloat(stateObj81.state).toFixed(1) : "0"}</text>
@@ -1160,14 +931,14 @@ class PowerFlowCard extends LitElement {
             <text x="51%" y="16.5%" class="st3 st8" display="${config.show_solar === " no" || config.solar.mppts==="one" ? "none" : "" }" fill="${solar_colour}">${config?.solar?.pv2_name ? `${config.solar.pv2_name}` : "PV2"}</text>
             <text x="19%" y="16.5%" class="st3 st8" display="${config.show_solar === " no" || config.solar.mppts==="one" || config.solar.mppts==="two" ? "none" : "" }" fill="${solar_colour}">${config?.solar?.pv3_name ? `${config.solar.pv3_name}` : "PV3"}</text>
             <text x="64.5%" y="16.5%" class="st3 st8" display="${config.show_solar === " no" || config.solar.mppts==="one" || config.solar.mppts==="two" || config.solar.mppts==="three" ? "none" : "" }" fill="${solar_colour}">${config?.solar?.pv4_name ? `${config.solar.pv4_name}` : "PV4"}</text>
- 
-            <!--            <text id="autarkye_value" x="130" y="260" display="${useautarky === " no" ? "none" : "" }" class="${useautarky === " energy" ? "st4 st8 left-align" : "st12" }" fill="${inverter_colour}">${Autarky}%</text>
+<!--
+            <text id="autarkye_value" x="130" y="260" display="${useautarky === " no" ? "none" : "" }" class="${useautarky === " energy" ? "st4 st8 left-align" : "st12" }" fill="${inverter_colour}">${Autarky}%</text>
             <text id="ratioe_value" x="173" y="260" display="${useautarky === " no" ? "none" : "" }" class="${useautarky === " energy" ? "st4 st8 left-align" : "st12" }" fill="${inverter_colour}">${Ratio}%</text>
             <text id="autarkyp_value" x="130" y="260" display="${useautarky === " no" ? "none" : "" }" class="${useautarky === " power" ? "st4 st8 left-align" : "st12" }" fill="${inverter_colour}">${Autarkyp}%</text>
             <text id="ratiop_value" x="173" y="260" display="${useautarky === " no" ? "none" : "" }" class="${useautarky === " power" ? "st4 st8 left-align" : "st12" }" fill="${inverter_colour}">${Ratiop}%</text>
             <text id="autarky" x="130" y="273" display="${useautarky === " no" ? "none" : "" }" class="st3 left-align" fill="${inverter_colour}">Autarky</text>
             <text id="ratio" x="173" y="273" display="${useautarky === " no" ? "none" : "" }" class="st3 left-align" fill="${inverter_colour}">Ratio</text>
-            -->
+-->
             <text id="autarkye_value" x="0.5%" y="54%" display="${useautarky === 'no' ? 'none' : ''}" class="${useautarky === 'energy' ? 'st4 st8 left-align' : 'st12'}" fill="${inverter_colour}" >${Autarky}%</text>
             <text id="ratioe_value" x="9%" y="54%" display="${useautarky === 'no' ? 'none' : ''}" class="${useautarky === 'energy' ? 'st4 st8 left-align' : 'st12'}" fill="${inverter_colour}" >${Ratio}%</text>
             <text id="autarkyp_value" x="0.5%" y="54%" display="${useautarky === 'no' ? 'none' : ''}" class="${useautarky === 'power' ? 'st4 st8 left-align' : 'st12'}" fill="${inverter_colour}" >${Autarkyp}%</text>
@@ -1178,13 +949,13 @@ class PowerFlowCard extends LitElement {
 
             <!-- zzzzzzzzz    -->
 
-            <text id="es-load1" x="81%" y="2%" class="st3" display="${additional_load === "no" ? "none" : ""}" fill="${load_colour}" >${config?.load?.load1_name ? `${config.load.load1_name}` : ""}</text>
-            <text id="ess_load1" x="77%" y="6%" display="${additional_load === "no" ? "none" : ""}" class="${font === "no" ? "st14" : "st4"} st8" fill="${load_colour}">${!isNaN(parseFloat(stateObj42.state)) ? parseFloat(stateObj42.state).toFixed(0) : "0"} W</text>
-            <text id="es-load2" x="81%" y="65%" class="st3" display="${additional_load === "no" || additional_load === "one" ? "none" : ""}" fill="${load_colour}" >${config?.load?.load2_name ? `${config.load.load2_name}` : ""}</text>
+            <text id="es-load1" x="72%" y="9%" class="st3" display="${additional_load === "no" ? "none" : ""}" fill="${load_colour}" >${config?.load?.load1_name ? `${config.load.load1_name}` : ""}</text>
+            <text id="ess_load1" x="77%" y="13%" display="${additional_load === "no" ? "none" : ""}" class="${font === "no" ? "st14" : "st4"} st8" fill="${load_colour}">${!isNaN(parseFloat(stateObj42.state)) ? parseFloat(stateObj42.state).toFixed(0) : "0"} W</text>
+            <text id="es-load2" x="72%" y="65%" class="st3" display="${additional_load === "no" || additional_load === "one" ? "none" : ""}" fill="${load_colour}" >${config?.load?.load2_name ? `${config.load.load2_name}` : ""}</text>
             <text id="ess_load2" x="77%" y="61.5%" display="${additional_load === "no" || additional_load === "one" ? "none" : ""}" class="${font === "no" ? "st14" : "st4"} st8" fill="${load_colour}">${!isNaN(parseFloat(stateObj45.state)) ? parseFloat(stateObj45.state).toFixed(0) : "0"} W</text>
-            <text id="es-load3" x="95%" y="2%" class="st3" display="${additional_load === "no" || additional_load === "one" || additional_load === "two" ? "none" : ""}" fill="${load_colour}" >${config?.load?.load3_name ? `${config.load.load3_name}` : ""}</text>
-            <text id="ess_load3" x="91%" y="6%" display="${additional_load === "no" || additional_load === "one" || additional_load === "two"  ? "none" : ""}" class="${font === "no" ? "st14" : "st4"} st8" fill="${load_colour}">${!isNaN(parseFloat(stateObj48.state))  ? parseFloat(stateObj48.state).toFixed(0) : "0"} W</text>
-            <text id="es-load4" x="95%" y="65%" class="st3" display="${  additional_load === "no" ||  additional_load === "one" || additional_load === "two" || additional_load === "three"  ? "none" : ""}" fill="${load_colour}" >${config?.load?.load4_name ? `${config.load.load4_name}` : ""}</text>
+            <text id="es-load3" x="90%" y="9%" class="st3" display="${additional_load === "no" || additional_load === "one" || additional_load === "two" ? "none" : ""}" fill="${load_colour}" >${config?.load?.load3_name ? `${config.load.load3_name}` : ""}</text>
+            <text id="ess_load3" x="91%" y="13%" display="${additional_load === "no" || additional_load === "one" || additional_load === "two"  ? "none" : ""}" class="${font === "no" ? "st14" : "st4"} st8" fill="${load_colour}">${!isNaN(parseFloat(stateObj48.state))  ? parseFloat(stateObj48.state).toFixed(0) : "0"} W</text>
+            <text id="es-load4" x="90%" y="65%" class="st3" display="${  additional_load === "no" ||  additional_load === "one" || additional_load === "two" || additional_load === "three"  ? "none" : ""}" fill="${load_colour}" >${config?.load?.load4_name ? `${config.load.load4_name}` : ""}</text>
             <text id="ess_load4" x="91%" y="61.5%" display="${additional_load === "no" || additional_load === "one" || additional_load === "two" || additional_load === "three" ? "none"  : ""}" class="${font === "no" ? "st14" : "st4"} st8" fill="${load_colour}">${!isNaN(parseFloat(stateObj49.state)) ? parseFloat(stateObj49.state).toFixed(0)  : "0"} W</text>
             <text id="aux" x="10%" y="50%" class="st3 st8" display="${show_aux === " no" ? "none" : "" }" fill="${aux_status === " on" || aux_status==="1" ? `${aux_colour}` : `${aux_off_colour}` }">${config?.load?.aux_name ? `${config.load.aux_name}` : "Auxiliary"}</text>
             <text id="noness" x="7%" y="75%" class="st3 st8" display="${grid_show_noness === " no" ? "none" : "" }" fill="${grid_colour}">${config?.grid?.nonessential_name ? `${config.grid.nonessential_name}` : "Non Essential"}</text>
@@ -1347,7 +1118,7 @@ class PowerFlowCard extends LitElement {
 
 
 
-            <path id="es-line" d="M 280 175 L 225 175" fill="none" stroke="${load_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
+            <path id="es-line" d="M 274 175 L 225 175" fill="none" stroke="${load_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
             <circle id="es-dot" cx="0" cy="0" r="3" fill="${
               essential === 0 ? "transparent" : `${load_colour}`
             }">
@@ -1366,10 +1137,10 @@ class PowerFlowCard extends LitElement {
             </circle>
             -->
 
-            <path id="es-load1" d="M 375 30 L 375 95" display="${additional_load === "no" ? "none" : ""}" fill="none" stroke="${load_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
-            <path id="es-load2" d="M 375 235 L 375 195" display="${additional_load === "no" || additional_load === "one" ? "none" : ""}" fill="none" stroke="${load_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
-            <path id="es-load3" d="M 445 30 L 445 95" display="${additional_load === "no" || additional_load === "one" || additional_load === "two" ? "none" : ""}" fill="none" stroke="${load_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
-            <path id="es-load4" d="M 445 235 L 445 195" display="${additional_load === "no" || additional_load === "one" || additional_load === "two" || additional_load === "three" ? "none" : ""}" fill="none" stroke="${load_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
+            <path id="es-load1" d="M 375 60 L 375 100" display="${additional_load === "no" ? "none" : ""}" fill="none" stroke="${load_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
+            <path id="es-load2" d="M 375 235 L 375 205" display="${additional_load === "no" || additional_load === "one" ? "none" : ""}" fill="none" stroke="${load_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
+            <path id="es-load3" d="M 445 60 L 445 100" display="${additional_load === "no" || additional_load === "one" || additional_load === "two" ? "none" : ""}" fill="none" stroke="${load_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
+            <path id="es-load4" d="M 445 235 L 445 205" display="${additional_load === "no" || additional_load === "one" || additional_load === "two" || additional_load === "three" ? "none" : ""}" fill="none" stroke="${load_colour}" stroke-width="1" stroke-miterlimit="10"  pointer-events="stroke"/>
 
 
             <!--            <svg xmlns="http://www.w3.org/2000/svg" id="ess_oven_top" x="368" y="113" width="36" height="36" viewBox="0 0 32 32" opacity="${
@@ -1429,36 +1200,36 @@ class PowerFlowCard extends LitElement {
 
 
       <g display="${additional_load === "no" ? "none" : ""}">
-              <foreignObject x="70%" y="7%" width="7.5%" height="7.5%" style="position: fixed; " ><body xmlns="http://www.w3.org/1999/xhtml" ><div style="position: fixed; "> 
+              <foreignObject x="71%" y="15%" width="7.5%" height="7.5%" style="position: fixed; " ><body xmlns="http://www.w3.org/1999/xhtml" ><div style="position: fixed; "> 
               <ha-icon icon="${load1e_icon}" class="essload-icon" ></ha-icon></div></body></foreignObject>
             </g>
 
             <g display="${additional_load === "no" || additional_load === "one" ? "none" : ""}">
-              <foreignObject x="70%" y="53%" width="7.5%" height="7.5%" style="position:fixed; " ><body xmlns="http://www.w3.org/1999/xhtml" ><div style="position: fixed; ">   
+              <foreignObject x="71%" y="53%" width="7.5%" height="7.5%" style="position:fixed; " ><body xmlns="http://www.w3.org/1999/xhtml" ><div style="position: fixed; ">   
               <ha-icon icon="${load2e_icon}" class="essload-icon" ></ha-icon></div></body></foreignObject>
             </g>
 
             <g display="${  additional_load === "no" || additional_load === "one" || additional_load === "two" ? "none"  : ""}">
-              <foreignObject x="85%" y="7%" width="7.5%" height="7.5%" style="position: fixed; " ><body xmlns="http://www.w3.org/1999/xhtml" > <div style="position: fixed; "> 
+              <foreignObject x="86%" y="15%" width="7.5%" height="7.5%" style="position: fixed; " ><body xmlns="http://www.w3.org/1999/xhtml" > <div style="position: fixed; "> 
               <ha-icon icon="${load3e_icon}" class="essload-icon" ></ha-icon></div></body></foreignObject>
             </g>
 
             <g display="${additional_load === "no" || additional_load === "one" || additional_load === "two" || additional_load === "three"  ? "none" : "" }">
-              <foreignObject x="85%" y="53%" width="7.5%" height="7.5%" style="position:fixed; " ><body xmlns="http://www.w3.org/1999/xhtml" ><div style="position: fixed; ">
+              <foreignObject x="86%" y="53%" width="7.5%" height="7.5%" style="position:fixed; " ><body xmlns="http://www.w3.org/1999/xhtml" ><div style="position: fixed; ">
               <ha-icon icon="${load4e_icon}" class="essload-icon" ></ha-icon></div></body></foreignObject>
             </g>
 
             <svg xmlns="http://www.w3.org/2000/svg" id="sun" x="10%" y="0.5%" width="9%" height="9%" viewBox="0 0 24 24"><path class="${  config.show_solar === "no" ? "st12" : "" }" fill="${solar_colour}" d="M11.45 2v3.55L15 3.77L11.45 2m-1 6L8 10.46l3.75 1.25L10.45 8M2 11.45L3.77 15l1.78-3.55H2M10 2H2v8c.57.17 1.17.25 1.77.25c3.58.01 6.49-2.9 6.5-6.5c-.01-.59-.1-1.18-.27-1.75m7 20v-6h-3l5-9v6h3l-5 9Z"/></svg>
 
             <svg xmlns="http://www.w3.org/2000/svg" id="bat1-high" x="17%" y="83%" width="10%" height="13%" preserveAspectRatio="none" opacity="${  parseInt(stateObj53.state) > "80" ? "1" : "0" }" viewBox="0 0 24 24"> <path fill="${battery_colour}" d="M 12 20 H 4 V 6 h 8 L 12 20 m 0.67 -16 H 11 V 2 H 5 v 2 H 3.33 C 2.6 4 2 4.6 2 5.33 v 15.34 C 2 21.4 2.6 22 3.33 22 h 9.34 c 0.74 0 1.33 -0.59 1.33 -1.33 V 5.33 C 14 4.6 13.4 4 12.67 4 M 11 16 H 5 v 3 h 6 v -3 m 0 -9 H 5 v 3 h 6 V 7 m 0 4.5 H 5 v 3 h 6 v -3 h -3 h 3"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" id="bat1-med" x="17%" y="83%" width="10%" height="13%" preserveAspectRatio="none" opacity="${ parseInt(stateObj53.state) >= 50 && parseInt(stateObj53.state) <= 80 ? "1" : "0"}" viewBox="0 0 24 24"><path fill="${battery_colour}" d="M 12 20 H 4 V 6 h 8 L 12 20 m 0.67 -16 H 11 V 2 H 5 v 2 H 3.33 C 2.6 4 2 4.6 2 5.33 v 15.34 C 2 21.4 2.6 22 3.33 22 h 9.34 c 0.74 0 1.33 -0.59 1.33 -1.33 V 5.33 C 14 4.6 13.4 4 12.67 4 M 11 16 H 5 v 3 h 6 v -3 m 0 -4.5 H 5 v 3 h 6 v -3 h -3 h 3"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" id="bat1-low" x="17%" y="83%" width="10%" height="13%" preserveAspectRatio="none" opacity="${ parseInt(stateObj53.state) > 30 && parseInt(stateObj53.state) <= 49  ? "1"  : "0" }" viewBox="0 0 24 24"><path fill="${battery_colour}" d="M 12 20 H 4 V 6 h 8 L 12 6 L 12 20 m 0.67 -15.999 H 11 V 2 H 5 v 2 H 3.33 C 2.6 4 2 4.6 2 5.33 v 15.34 C 2 21.4 2.6 22 3.33 22 h 9.34 c 0.74 0 1.33 -0.59 1.33 -1.33 V 5.33 C 14 4.6 13.4 4 12.67 4 M 11 16 H 5 v 3 h 6 v -3"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" id="bat1-empty" x="17%" y="83%" width="10%" height="13%" preserveAspectRatio="none" opacity="${  parseInt(stateObj53.state) <= 30 ? "1" : "0" }" viewBox="0 0 24 24"> <path fill="${battery_colour}" d="M 12 6 L 12 20 M 12 20 H 4 l 0.05 -14 h 7.95 m 0.67 -2 h -1.67 V 2 h -6 v 2 H 3.38 a 1.33 1.33 0 0 0 -1.33 1.33 v 15.34 c 0 0.73 0.6 1.33 1.33 1.33 h 9.34 c 0.73 0 1.33 -0.6 1.33 -1.33 V 5.33 A 1.33 1.33 0 0 0 12.72 4 Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" id="bat1-med" x="17%" y="83%" width="10%" height="13%" preserveAspectRatio="none" opacity="${ parseInt(stateObj53.state) >= 50 && parseInt(stateObj53.state) <= 80 ? "1" : "0"}" viewBox="0 0 24 24"><path fill="yellow" d="M 12 20 H 4 V 6 h 8 L 12 20 m 0.67 -16 H 11 V 2 H 5 v 2 H 3.33 C 2.6 4 2 4.6 2 5.33 v 15.34 C 2 21.4 2.6 22 3.33 22 h 9.34 c 0.74 0 1.33 -0.59 1.33 -1.33 V 5.33 C 14 4.6 13.4 4 12.67 4 M 11 16 H 5 v 3 h 6 v -3 m 0 -4.5 H 5 v 3 h 6 v -3 h -3 h 3"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" id="bat1-low" x="17%" y="83%" width="10%" height="13%" preserveAspectRatio="none" opacity="${ parseInt(stateObj53.state) > 30 && parseInt(stateObj53.state) <= 49  ? "1"  : "0" }" viewBox="0 0 24 24"><path fill="$orange" d="M 12 20 H 4 V 6 h 8 L 12 6 L 12 20 m 0.67 -15.999 H 11 V 2 H 5 v 2 H 3.33 C 2.6 4 2 4.6 2 5.33 v 15.34 C 2 21.4 2.6 22 3.33 22 h 9.34 c 0.74 0 1.33 -0.59 1.33 -1.33 V 5.33 C 14 4.6 13.4 4 12.67 4 M 11 16 H 5 v 3 h 6 v -3"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" id="bat1-empty" x="17%" y="83%" width="10%" height="13%" preserveAspectRatio="none" opacity="${  parseInt(stateObj53.state) <= 30 ? "1" : "0" }" viewBox="0 0 24 24"> <path fill="red" d="M 12 6 L 12 20 M 12 20 H 4 l 0.05 -14 h 7.95 m 0.67 -2 h -1.67 V 2 h -6 v 2 H 3.38 a 1.33 1.33 0 0 0 -1.33 1.33 v 15.34 c 0 0.73 0.6 1.33 1.33 1.33 h 9.34 c 0.73 0 1.33 -0.6 1.33 -1.33 V 5.33 A 1.33 1.33 0 0 0 12.72 4 Z"/></svg>
 
             <svg xmlns="http://www.w3.org/2000/svg" id="bat2-high" x="32%" y="83%" width="10%" height="13%" preserveAspectRatio="none" opacity="${ parseInt(stateObj56.state) > "80" ? "1" : "0" }" viewBox="0 0 24 24"> <path fill="${battery_colour}" d="M 12 20 H 4 V 6 h 8 L 12 20 m 0.67 -16 H 11 V 2 H 5 v 2 H 3.33 C 2.6 4 2 4.6 2 5.33 v 15.34 C 2 21.4 2.6 22 3.33 22 h 9.34 c 0.74 0 1.33 -0.59 1.33 -1.33 V 5.33 C 14 4.6 13.4 4 12.67 4 M 11 16 H 5 v 3 h 6 v -3 m 0 -9 H 5 v 3 h 6 V 7 m 0 4.5 H 5 v 3 h 6 v -3 h -3 h 3"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" id="bat2-med" x="32%" y="83%" width="10%" height="13%" preserveAspectRatio="none" opacity="${ parseInt(stateObj56.state) >= 50 && parseInt(stateObj56.state) <= 80  ? "1"  : "0" }" viewBox="0 0 24 24"><path fill="${battery_colour}" d="M 12 20 H 4 V 6 h 8 L 12 20 m 0.67 -16 H 11 V 2 H 5 v 2 H 3.33 C 2.6 4 2 4.6 2 5.33 v 15.34 C 2 21.4 2.6 22 3.33 22 h 9.34 c 0.74 0 1.33 -0.59 1.33 -1.33 V 5.33 C 14 4.6 13.4 4 12.67 4 M 11 16 H 5 v 3 h 6 v -3 m 0 -4.5 H 5 v 3 h 6 v -3 h -3 h 3"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" id="bat2-low" x="32%" y="83%" width="50" height="13%" preserveAspectRatio="none" opacity="${  parseInt(stateObj56.state) > 30 && parseInt(stateObj56.state) <= 49  ? "1" : "0"}" viewBox="0 0 24 24"><path fill="${battery_colour}" d="M 12 20 H 4 V 6 h 8 L 12 6 L 12 20 m 0.67 -15.999 H 11 V 2 H 5 v 2 H 3.33 C 2.6 4 2 4.6 2 5.33 v 15.34 C 2 21.4 2.6 22 3.33 22 h 9.34 c 0.74 0 1.33 -0.59 1.33 -1.33 V 5.33 C 14 4.6 13.4 4 12.67 4 M 11 16 H 5 v 3 h 6 v -3"/></svg>
-            <svg xmlns="http://www.w3.org/2000/svg" id="bat2-empty" x="32%" y="83%" width="10%" height="13%" preserveAspectRatio="none" opacity="${  parseInt(stateObj56.state) <= 30 ? "1" : "0" }" viewBox="0 0 24 24"> <path fill="${battery_colour}" d="M 12 6 L 12 20 M 12 20 H 4 l 0.05 -14 h 7.95 m 0.67 -2 h -1.67 V 2 h -6 v 2 H 3.38 a 1.33 1.33 0 0 0 -1.33 1.33 v 15.34 c 0 0.73 0.6 1.33 1.33 1.33 h 9.34 c 0.73 0 1.33 -0.6 1.33 -1.33 V 5.33 A 1.33 1.33 0 0 0 12.72 4 Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" id="bat2-med" x="32%" y="83%" width="10%" height="13%" preserveAspectRatio="none" opacity="${ parseInt(stateObj56.state) >= 50 && parseInt(stateObj56.state) <= 80  ? "1"  : "0" }" viewBox="0 0 24 24"><path fill="yellow" d="M 12 20 H 4 V 6 h 8 L 12 20 m 0.67 -16 H 11 V 2 H 5 v 2 H 3.33 C 2.6 4 2 4.6 2 5.33 v 15.34 C 2 21.4 2.6 22 3.33 22 h 9.34 c 0.74 0 1.33 -0.59 1.33 -1.33 V 5.33 C 14 4.6 13.4 4 12.67 4 M 11 16 H 5 v 3 h 6 v -3 m 0 -4.5 H 5 v 3 h 6 v -3 h -3 h 3"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" id="bat2-low" x="32%" y="83%" width="50" height="13%" preserveAspectRatio="none" opacity="${  parseInt(stateObj56.state) > 30 && parseInt(stateObj56.state) <= 49  ? "1" : "0"}" viewBox="0 0 24 24"><path fill="orange" d="M 12 20 H 4 V 6 h 8 L 12 6 L 12 20 m 0.67 -15.999 H 11 V 2 H 5 v 2 H 3.33 C 2.6 4 2 4.6 2 5.33 v 15.34 C 2 21.4 2.6 22 3.33 22 h 9.34 c 0.74 0 1.33 -0.59 1.33 -1.33 V 5.33 C 14 4.6 13.4 4 12.67 4 M 11 16 H 5 v 3 h 6 v -3"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" id="bat2-empty" x="32%" y="83%" width="10%" height="13%" preserveAspectRatio="none" opacity="${  parseInt(stateObj56.state) <= 30 ? "1" : "0" }" viewBox="0 0 24 24"> <path fill="red" d="M 12 6 L 12 20 M 12 20 H 4 l 0.05 -14 h 7.95 m 0.67 -2 h -1.67 V 2 h -6 v 2 H 3.38 a 1.33 1.33 0 0 0 -1.33 1.33 v 15.34 c 0 0.73 0.6 1.33 1.33 1.33 h 9.34 c 0.73 0 1.33 -0.6 1.33 -1.33 V 5.33 A 1.33 1.33 0 0 0 12.72 4 Z"/></svg>
 
             <svg xmlns="http://www.w3.org/2000/svg" id="bat3-high" x="47%" y="83%" width="10%" height="13%" preserveAspectRatio="none" opacity="${  parseInt(stateObj59.state) > "80" ? "1" : "0" }" viewBox="0 0 24 24"> <path fill="${battery_colour}" d="M 12 20 H 4 V 6 h 8 L 12 20 m 0.67 -16 H 11 V 2 H 5 v 2 H 3.33 C 2.6 4 2 4.6 2 5.33 v 15.34 C 2 21.4 2.6 22 3.33 22 h 9.34 c 0.74 0 1.33 -0.59 1.33 -1.33 V 5.33 C 14 4.6 13.4 4 12.67 4 M 11 16 H 5 v 3 h 6 v -3 m 0 -9 H 5 v 3 h 6 V 7 m 0 4.5 H 5 v 3 h 6 v -3 h -3 h 3"/></svg>
             <svg xmlns="http://www.w3.org/2000/svg" id="bat3-med" x="47%" y="83%" width="10%" height="13%" preserveAspectRatio="none" opacity="${ parseInt(stateObj59.state) >= 50 && parseInt(stateObj59.state) <= 80  ? "1"  : "0" }" viewBox="0 0 24 24"><path fill="yellow" d="M 12 20 H 4 V 6 h 8 L 12 20 m 0.67 -16 H 11 V 2 H 5 v 2 H 3.33 C 2.6 4 2 4.6 2 5.33 v 15.34 C 2 21.4 2.6 22 3.33 22 h 9.34 c 0.74 0 1.33 -0.59 1.33 -1.33 V 5.33 C 14 4.6 13.4 4 12.67 4 M 11 16 H 5 v 3 h 6 v -3 m 0 -4.5 H 5 v 3 h 6 v -3 h -3 h 3"/></svg>
@@ -1468,7 +1239,6 @@ class PowerFlowCard extends LitElement {
 
 
       <svg version="1.0" id="ev_car" x="65%" y="80%" width="25%" height="25%" fill="${load_colour}" class="${config.show_ev === "yes" ? "" : "st12"}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300.000000 107.000000" preserveAspectRatio="xMidYMid meet">
-     <metadata>     Created by potrace 1.10, written by Peter Selinger 2001-2011 </metadata>
      <g transform="translate(0.000000,107.000000) scale(0.100000,-0.100000)"
      fill="${load_colour}" stroke="none">
      <path d="M1585 1033 c-122 -8 -279 -36 -356 -62 -108 -36 -259 -113 -377 -190
@@ -1578,14 +1348,11 @@ class PowerFlowCard extends LitElement {
 
 
      <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-     id="whispergen" x="95%" y="80%"  class="${
+     id="whispergen" x="104%" y="81%"  class="${
        config.show_stirling === "yes" ? "" : "st12"
      }"  
-     width="15%" height="15%" viewBox="0 0 300.000000 430.000000"
+     width="12%" height="12%" viewBox="0 0 300.000000 430.000000"
      preserveAspectRatio="xMidYMid meet">
-    <metadata>
-    Created by potrace 1.10, written by Peter Selinger 2001-2011
-    </metadata>
     <g transform="translate(0.000000,430.000000) scale(0.100000,-0.100000)"
     fill="${load_colour}" stroke="none">
     <path d="M131 4286 c-14 -8 -28 -22 -32 -32 -4 -11 -8 -144 -8 -298 l-1 -278
@@ -1978,7 +1745,7 @@ class PowerFlowCard extends LitElement {
 
 
     <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
-    id="chaud" x="110%" y="75%" width="20%" height="20%" class="${config.show_chaud === "no" ? "" : "st12"}" fill="${load_colour}" viewBox="0 0 256.000000 300.000000"preserveAspectRatio="xMidYMid meet">
+    id="chaud" x="115%" y="75%" width="18%" height="18%" class="${config.show_chaud === "yes" ? "" : "st12"}" fill="${load_colour}" viewBox="0 0 256.000000 300.000000"preserveAspectRatio="xMidYMid meet">
 
    <g transform="translate(-128.000000,150.000000) scale(0.100000,-0.100000)" transform-origin="center"
    fill="${load_colour}" stroke="none">
@@ -2140,7 +1907,7 @@ class PowerFlowCard extends LitElement {
    -55 28 -29 27 -51 28 -37 2z"/>
    <path d="M1480 542 c0 -5 26 -19 57 -32 31 -13 73 -38 93 -56 32 -29 45 -34
    115 -40 53 -5 76 -4 72 3 -4 6 -27 14 -51 17 -32 5 -57 18 -91 48 -37 33 -46
-   37 -41 21 6 -20 2 -19 -61 13 -68 34 -93 41 -93 26z"/>
+   37 -41 21 6 -20 2 -19 -61 13 -68 34 -93 41 -93 26z"/> 
    </g>
    </svg>
 
@@ -2162,7 +1929,7 @@ class PowerFlowCard extends LitElement {
 
             <!--            <svg xmlns="http://www.w3.org/2000/svg" id="essen" x="70%" y="32%" width="25%" height="25%" viewBox="0 0 24 24"><path fill="${load_colour}" d="M15 9h1V7.5h4V9h1c.55 0 1 .45 1 1v11c0 .55-.45 1-1 1h-6c-.55 0-1-.45-1-1V10c0-.55.45-1 1-1m1 2v3h4v-3h-4m-4-5.31l-5 4.5V18h5v2H5v-8H2l10-9l2.78 2.5H14v1.67l-.24.1L12 5.69Z"/></svg>
             -->
-            <svg xmlns="http://www.w3.org/2000/svg" id="essen" x="67%" y="14%" width="35%" height="35%" fill="${load_colour}" class="bi bi-house" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/> <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/> </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" id="essen" x="67%" y="17%" width="35%" height="35%" fill="${load_colour}" class="bi bi-house" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M2 13.5V7h1v6.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V7h1v6.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5zm11-11V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/> <path fill-rule="evenodd" d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z"/> </svg>
 
 
 
@@ -2200,19 +1967,33 @@ class PowerFlowCard extends LitElement {
           </a>
 
 
-            <a href="#" @click=${(e) => this.handlePopup(e, config.entities.EV_moins)}>
-            <rect x="66.5%" y="68%" width="4%" height="4%" rx="1%" ry="1%" fill="none" stroke="${inverter_colour}" pointer-events="all"/>
-            <text id="Text" x="68%" y="70%" class="st4 left-align" fill="${load_colour}">-</text>
-          </a>
-            <a href="#" @click=${(e) => this.handlePopup(e, config.entities.EV_amp)}>
-            <rect x="71.5%" y="68%" width="4%" height="4%" rx="1%" ry="1%" fill="none" stroke="${inverter_colour}" pointer-events="all"/>
-            <text id="text_amp"x="73%" y="72%" class="st3 left-align" display="${stateObj75.state == 'one' && usetimer !== 'no' ? '' : 'none'}" fill="${inverter_colour}">On</text>
-            <text id="Text" x="77.5%" y="70%" class="st4 left-align" fill="${load_colour}">+</text>
-          </a>
-            <a href="#" @click=${(e) => this.handlePopup(e, config.entities.EV_plus)}>
-            <rect x="76.5%" y="68%" width="4%" height="4%" rx="1%" ry="1%" fill="none" stroke="${inverter_colour}" pointer-events="all"/>
-            <text id="Text" x="77.5%" y="70%" class="st4 left-align" fill="${load_colour}">+</text>
-           </a>
+          <a href="#" @click=${(e) => this.handlePopup(e, config.entities.EV_moins)}>
+          <rect x="66.5%" y="68%" width="4%" height="4%" rx="1%" ry="1%" fill="none" display="${config.show_ev === 'no' ? 'none' : ''}" stroke="${inverter_colour}" pointer-events="all"/>
+          <text id="Text" x="68%" y="70%" class="st4 left-align" display="${config.show_ev === 'no' ? 'none' : ''}" fill="${load_colour}">-</text>
+        </a>
+          <a href="#" @click=${(e) => this.handlePopup(e, config.entities.EV_amp)}>
+          <rect x="71.5%" y="68%" width="4%" height="4%" rx="1%" ry="1%" display="${config.show_ev === 'no' ? 'none' : ''}" fill="none" stroke="${inverter_colour}" pointer-events="all"/>
+          <text id="text_amp"x="73%" y="72%" class="st3 left-align" display="${config.show_ev === 'no' ? 'none' : ''}"  fill="${inverter_colour}">On</text>
+          <text id="Text" x="77.5%" y="70%" class="st4 left-align" display="${config.show_ev === 'no' ? 'none' : ''}" fill="${load_colour}">+</text>
+        </a>
+          <a href="#" @click=${(e) => this.handlePopup(e, config.entities.EV_plus)}>
+          <rect x="76.5%" y="68%" width="4%" height="4%" rx="1%" ry="1%" fill="none" display="${config.show_ev === 'no' ? 'none' : ''}" stroke="${inverter_colour}" pointer-events="all"/>
+          <text id="Text" x="77.5%" y="70%" class="st4 left-align" display="${config.show_ev === 'no' ? 'none' : ''}" fill="${load_colour}">+</text>
+         </a>
+
+         <a href="#" @click=${(e) => this.handlePopup(e, config.entities.EV_moins)}>
+         <rect x="66.5%" y="73%" width="4%" height="4%" rx="1%" ry="1%" fill="none" display="${config.show_ev === 'no' ? 'none' : ''}" stroke="${inverter_colour}" pointer-events="all"/>
+         <text id="Text" x="68%" y="75%" class="st4 left-align" display="${config.show_ev === 'no' ? 'none' : ''}" fill="${load_colour}">-</text>
+       </a>
+         <a href="#" @click=${(e) => this.handlePopup(e, config.entities.EV_amp)}>
+         <rect x="71.5%" y="73%" width="4%" height="4%" rx="1%" ry="1%" display="${config.show_ev === 'no' ? 'none' : ''}" fill="none" stroke="${inverter_colour}" pointer-events="all"/>
+         <text id="text_amp"x="73%" y="77%" class="st3 left-align" display="${config.show_ev === 'no' ? 'none' : ''}"  fill="${inverter_colour}">On</text>
+         <text id="Text" x="77.5%" y="75%" class="st4 left-align" display="${config.show_ev === 'no' ? 'none' : ''}" fill="${load_colour}">+</text>
+       </a>
+         <a href="#" @click=${(e) => this.handlePopup(e, config.entities.EV_plus)}>
+         <rect x="76.5%" y="73%" width="4%" height="4%" rx="1%" ry="1%" fill="none" display="${config.show_ev === 'no' ? 'none' : ''}" stroke="${inverter_colour}" pointer-events="all"/>
+         <text id="Text" x="77.5%" y="75%" class="st4 left-align" display="${config.show_ev === 'no' ? 'none' : ''}" fill="${load_colour}">+</text>
+        </a>
 
 
            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
@@ -2636,9 +2417,10 @@ class PowerFlowCard extends LitElement {
       } kWh</text>
             </a>
             -->
+
             <a href="#" @click=${(e) =>
               this.handlePopup(e, config.entities.day_load_energy_84)}>
-              <text id="daily_load_value" x="60%" y="37%" class="st14 left-align" display="${
+              <text id="daily_load_value" x="58%" y="36%" class="st14 left-align" display="${
                 load_showdaily === "no" ? "none" : ""
               }" fill="${load_colour}" >${
         parseFloat(stateObj2.state).toFixed(1)
@@ -3129,7 +2911,7 @@ class PowerFlowCard extends LitElement {
               config.entities.essential_power !== "none"
                 ? svg`<a href="#" @click=${(e) =>
                     this.handlePopup(e, config.entities.essential_power)}>
-                    <text id="ess_power" x="66%" y="43.5%" class="${
+                    <text id="ess_power" x="64%" y="43%" class="${
                       font === "no" ? "st14" : "st4"
                     } st8" fill="${load_colour}">${
                     essential ? essential : "0"
