@@ -877,6 +877,8 @@ class PowerFlowCard extends LitElement {
             <rect id="pchaud" x="119%" y="59%" width="10%" height="4%" rx="1%" ry="1%" fill="none" stroke="${load_colour}" pointer-events="all" class="${config.show_bal === "yes" ? "" : "st12" }"/>
             <rect id="pstrirlchau" x="105%" y="59%" width="10%" height="4%" rx="1%" ry="1%" fill="none" stroke="${load_colour}" pointer-events="all" class="${config.show_bal === "yes" ? "" : "st12" }"/>
 
+            <text id="time" x="70%" y="3%" class="st14 st16 left-align">${new Date()}</text>
+
             <text id="duration" x="46%" y="49%" class="${ font === "no" ? "st3" : "st3"} left-align" fill="${config.battery.energy === "hidden" || float === "True" || battery_power === 0 ? "transparent" : `${battery_colour}`}" >${duration}</text>
             <text id="duration_text" x="46%" y="51%" class="st3 left-align" fill="${config.battery.energy === " hidden" || battery_power <=0 || float==="True" ? "transparent" : `${battery_colour}` }">RUNTIME TO ${battery_capacity}% @${formattedResultTime}</text>
             <text id="duration_text_charging" x="46%" y="51%" class="st3 left-align" fill="${config.battery.energy === " hidden" || battery_power>= 0 || float === "True" ? "transparent"  : `${battery_colour}`}" >TO ${battery_capacity}% CHARGE @${formattedResultTime}</text>
