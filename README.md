@@ -4,7 +4,7 @@ Work in progress...
 
 ### Pictures
 ![](img/1.png) 
-![](img/2_mid1.png) 
+![](img/level.png) 
 In conf card:
  
 inverter:
