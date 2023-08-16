@@ -1,7 +1,7 @@
 Work in progress...
 
 ### Pictures
-![screenshot](img/1.png) 
+![screenshot](https://github.com/JuWorkshop/power-flow-card/blob/main/img/1.png) 
 ![](img/level.png) 
 In conf card:
  
