@@ -1,7 +1,10 @@
 Work in progress...
 
 ### Pictures
-![screenshot](https://github.com/JuWorkshop/power-flow-card/blob/main/img/1.png) 
+
+![Capture d’écran de 2023-08-16 13-25-23](https://github.com/JuWorkshop/power-flow-card/assets/89390048/35d3024d-0e5c-4ed7-a4c8-5dc61a412bba)
+
+
 ![2023](https://user-images.githubusercontent.com/89390048/)
 ![](img/level.png) 
 
