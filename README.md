@@ -1,3 +1,8 @@
+# Power Flow Card 
+
+![Capture d’écran de 2023-08-16 13-25-23](https://github.com/JuWorkshop/power-flow-card/assets/89390048/35d3024d-0e5c-4ed7-a4c8-5dc61a412bba)
+
+
 Work in progress...
 
 ### Pictures
@@ -64,6 +69,8 @@ inverter:
 ## Usefull links
 Many thanks. @slipx06:
 . https://github.com/slipx06/sunsynk-power-flow-card
+
+![GitHub total downloads](https://img.shields.io/github/downloads/JuWorkshop/power-flow-card/total?style=flat-square)
 
 ## Donate
 
