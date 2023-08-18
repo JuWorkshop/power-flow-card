@@ -1,3 +1,6 @@
+![2023_2](https://github.com/JuWorkshop/power-flow-card/assets/89390048/c096ad2a-7c90-47ca-830e-de44db63e0a2)
+
+
 # Power Flow Card 
 ![2023_1](https://github.com/JuWorkshop/power-flow-card/assets/89390048/9f27dbbc-b2ed-4d19-9593-4e3522294c33)
 
