@@ -1,4 +1,5 @@
 # Power Flow Card 
+![2023_1](https://github.com/JuWorkshop/power-flow-card/assets/89390048/9f27dbbc-b2ed-4d19-9593-4e3522294c33)
 
 ![2023](https://user-images.githubusercontent.com/89390048/)
 <img src="https://user-images.githubusercontent.com/89390048/261030406-35d3024d-0e5c-4ed7-a4c8-5dc61a412bba.png" alt="GitHub Power Flow Card" width="600px"/>
@@ -31,7 +32,9 @@ If you configure Dashboards via YAML, add a reference to `power-flow-card.js` in
 ```yaml
 resources:
   - url: /local/power-flow-card.js
-    type: module
+    type: module![2023_1](https://github.com/JuWorkshop/power-flow-card/assets/89390048/5cfc1764-4dcd-4514-b376-40051ab9d0a6)
+![Capture d’écran de 2023-08-15 13-00-02](https://github.com/JuWorkshop/power-flow-card/assets/89390048/d1c89f1d-043f-4c21-978c-600469f59462)
+
 ```
 
 Else, if you prefer the graphical editor, use the menu to add the resource:
