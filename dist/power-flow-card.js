@@ -144,6 +144,10 @@ class PowerFlowCard extends LitElement {
         max_power: 4500,
         full_capacity: 80,
         empty_capacity: 30,
+        bat1_name: "Bat1",
+        bat2_name: "Bat2",
+        bat3_name: "Bat3",
+        bat4_name: "Bat4",
       },
       inverter: {
         modern: "multi_rs",
@@ -183,7 +187,7 @@ class PowerFlowCard extends LitElement {
         nonessential_name: " ",
       },
       entities: {
-        use_timer_248: "switch.none",
+        use_timer_248: "none",
         priority_load_243: "switch.none",
         inverter_voltage_154: "sensor.none",
         load_frequency_192: "sensor.none",
@@ -202,9 +206,9 @@ class PowerFlowCard extends LitElement {
         day_grid_export_77: "sensor.none",
         grid_ct_power_172: "sensor.none",
         day_load_energy_84: "sensor.none",
-//        essential_power: "none",
-//        nonessential_power: "none",
-//        aux_power_166: "sensor.none",
+        //        essential_power: "none",
+        //        nonessential_power: "none",
+        //        aux_power_166: "sensor.none",
         day_pv_energy_108: "sensor.none",
         pv1_power_186: "sensor.none",
         pv2_power_187: "sensor.none",
@@ -212,6 +216,10 @@ class PowerFlowCard extends LitElement {
         pv1_current_110: "sensor.none",
         pv2_voltage_111: "sensor.none",
         pv2_current_112: "sensor.none",
+        pv1_state: "sensor.none",
+        pv2_state: "sensor.none",
+        pv3_state: "sensor.none",
+        pv4_state: "sensor.none",
 
         day_bat1_charge: "sensor.none",
         day_bat1_discharge: "sensor.none",
@@ -241,10 +249,10 @@ class PowerFlowCard extends LitElement {
 
         ///    bat1_switch: "switch.none",
 
-        //        bat1_disch_sw: "switch.none",
-        //        bat1_charg_sw: "switch.none",
-        //        bat2_disch_sw: "switch.none",
-        //        bat2_charg_sw: "switch.none",
+        bat1_disch_sw: "switch.none",
+        bat1_charg_sw: "switch.none",
+        bat2_disch_sw: "switch.none",
+        bat2_charg_sw: "switch.none",
         //        bat3_switch: "switch.none",
         //        bat3_switch: "switch.none",
         //        bat4_disch_sw: "switch.none",
@@ -487,9 +495,7 @@ class PowerFlowCard extends LitElement {
     const stateObj65 = this.hass.states[
       config.entities.battery4_current_191
     ] || { state: "0" };
-    const stateObj66 = this.hass.states[config.entities.bat4_charg_sw] || {
-      state: "undefined",
-    };
+    //    const stateObj66 = this.hass.states[config.entities.bat4_charg_sw] || {state: "undefined",};
     const stateObj67 = this.hass.states[config.entities.day_bat1_discharge] || {
       state: "0",
     };
@@ -627,6 +633,59 @@ class PowerFlowCard extends LitElement {
     //    const stateObj108 = this.hass.states[config.entities.pv2_power_187] || {state: "0",};
     //    const stateObj109 = this.hass.states[config.entities.pv1_power_186] || {state: "0",};
 
+    const stateObj110 = this.hass.states[config.entities.pv1_state] || {
+      state: "0",
+    };
+    const stateObj111 = this.hass.states[config.entities.pv2_state] || {
+      state: "0",
+    };
+    const stateObj112 = this.hass.states[config.entities.pv3_state] || {
+      state: "0",
+    };
+    const stateObj113 = this.hass.states[config.entities.pv4_state] || {
+      state: "0",
+    };
+    const stateObj114 = this.hass.states[config.entities.pv1_max] || {
+      state: "0",
+    };
+    const stateObj115 = this.hass.states[config.entities.pv2_max] || {
+      state: "0",
+    };
+    const stateObj116 = this.hass.states[config.entities.pv3_max] || {
+      state: "0",
+    };
+    const stateObj117 = this.hass.states[config.entities.pv4_max] || {
+      state: "0",
+    };
+    const stateObj118 = this.hass.states[config.entities.pv1_sw] || {
+      state: "0",
+    };
+    const stateObj119 = this.hass.states[config.entities.day_bat4_charge] || {
+      state: "0",
+    };
+    const stateObj120 = this.hass.states[config.entities.pv1_state] || {
+      state: "0",
+    };
+    const stateObj121 = this.hass.states[config.entities.pv2_state] || {
+      state: "0",
+    };
+    const stateObj122 = this.hass.states[config.entities.pv3_state] || {
+      state: "0",
+    };
+    const stateObj123 = this.hass.states[config.entities.pv4_state] || {
+      state: "0",
+    };
+    const stateObj124 = this.hass.states[config.entities.pv1_max] || {
+      state: "0",
+    };
+    const stateObj125 = this.hass.states[config.entities.pv2_max] || {
+      state: "0",
+    };
+    //    const stateObj126 = this.hass.states[config.entities.bat1_name] || {state: "Bat 1",};
+    //    const stateObj127 = this.hass.states[config.entities.bat2_name] || {state: "Bat 2",};
+    //    const stateObj128 = this.hass.states[config.entities.bat3_name] || {state: "Bat 3",};
+    //    const stateObj129 = this.hass.states[config.entities.bat4_name] || {state: "Bat 4",};
+
     //Set defaults
     let invert_aux = config?.load?.invert_aux || "no";
     let aux_power =
@@ -763,8 +822,15 @@ class PowerFlowCard extends LitElement {
     let total_pv = config?.entities?.pv_total
       ? parseInt(stateObj46.state)
       : totalsolar;
+
     let effsolar = parseInt(stateObj4.state) / 3.6;
     let wm2 = totalsolar / 18;
+    let pvmaxold = "";
+    let pvmax = "";
+    if (totalsolar > pvmaxold) {
+      pvmaxold = totalsolar;
+    }
+    pvmax = pvmaxold;
 
     //essential = inverter_power_175 + grid_power_169 - aux_power_166
     let essential =
@@ -925,6 +991,7 @@ class PowerFlowCard extends LitElement {
     let totalSeconds = 0;
     let formattedResultTime = "";
     let duration = "";
+    let clock = new Date().toString().substring(0, 25);
 
     if (config.battery.energy !== "hidden") {
       if (battery_power === 0) {
@@ -1267,7 +1334,7 @@ class PowerFlowCard extends LitElement {
         config.show_stirling === "yes" ? "" : "st12"
       }"/>
 
-            <text id="time" x="70%" y="3%" class="st14 st16 left-align">${new Date()}</text>
+            <text id="time" x="70%" y="3%" class="st14 st16 left-align">${clock}</text>
             <text id="duration" x="46%" y="49%" class="${
               font === "no" ? "st3" : "st3"
             } left-align" fill="${
@@ -1303,6 +1370,7 @@ class PowerFlowCard extends LitElement {
             <text id="daily_bat_dischcharge" x="0%" y="99%" class="st3 left-align" fill="${
               battery_showdaily === " no" ? "transparent" : `${battery_colour}`
             }">DAILY DISCH</text>
+<!--
             <text id="daily_bat1" x="17%" y="97%" class="st3 left-align" fill="${
               battery_showdaily === " no" ? "transparent" : `${battery_colour}`
             }">AGM in/out</text>
@@ -1316,6 +1384,7 @@ class PowerFlowCard extends LitElement {
             }" fill="${
         battery_showdaily === " no" ? "transparent" : `${battery_colour}`
       }">LFP in/out</text>
+-->
             <text id="daily_load" x="58%" y="38%" class="st3 left-align" fill="${
               load_showdaily === "no" ? "transparent" : `${load_colour}`
             }" >DAILY LOAD</text>
@@ -1324,7 +1393,7 @@ class PowerFlowCard extends LitElement {
               config.entities.battery1_soc_184 === "none" ? "none" : ""
             }" fill="${battery_colour}">Ah: ${
         !isNaN(parseFloat(stateObj80.state))
-          ? parseFloat(stateObj80.state).toFixed(0)
+          ? parseFloat(stateObj80.state).toFixed(2)
           : "0"
       }</text>
             <text id="bat1_2" x="23%" y="88%" class="st15 left-align" display="${
@@ -1464,6 +1533,29 @@ class PowerFlowCard extends LitElement {
           : "0"
       }</text>
 
+            <text id="bat1_name" x="17%" y="97%" class="st15 left-align" display="${
+              config.entities.battery1_soc_184 === "none" ? "none" : ""
+            }" fill="${battery_colour}">${
+        config?.battery?.bat1_name ? `${config.battery.bat1_name}` : ""
+      }</text>
+            <text id="bat2_name" x="32%" y="97%" class="st15 left-align" display="${
+              config.entities.battery2_soc_184 === "none" ? "none" : ""
+            }" fill="${battery_colour}">${
+        config?.battery?.bat2_name ? `${config.battery.bat2_name}` : ""
+      }</text>
+            <text id="bat3_name" x="47%" y="97%" class="st15 left-align" display="${
+              config.entities.battery3_soc_184 === "none" ? "none" : ""
+            }" fill="${battery_colour}">${
+        config?.battery?.bat3_name ? `${config.battery.bat3_name}` : ""
+      }</text>
+            <text id="bat4_name" x="62%" y="97%" class="st15 left-align" display="${
+              config.entities.battery4_soc_184 === "none" ? "none" : ""
+            }" fill="${battery_colour}">${
+        config?.battery?.bat4_name ? `${config.battery.bat4_name}` : ""
+      }</text>
+
+
+
             <text id="Text" x="95%" y="23%" class="st3 left-align" fill="${load_colour}">Ext</text>
             <text id="Tsalon" x="82%" y="40%" class="st3 left-align" fill="${load_colour}">Salon</text>
             <text id="Tchambre" x="81%" y="34%" class="st3 left-align" fill="${load_colour}">Chambre</text>
@@ -1545,6 +1637,7 @@ class PowerFlowCard extends LitElement {
                 ? "transparent"
                 : `${solar_colour}`
             }">DAILY / HA LEFT / VICTRON LEFT / Wh/Wc / Wh/m2</text>
+<!--
             <text x="33%" y="16.5%" class="st3 st8" display="${
               config.show_solar === " no" ? "none" : ""
             }" fill="${solar_colour}">${
@@ -1576,6 +1669,41 @@ class PowerFlowCard extends LitElement {
             }" fill="${solar_colour}">${
         config?.solar?.pv4_name ? `${config.solar.pv4_name}` : "PV4"
       }</text>
+-->
+            <text id="pv1_st" x="33%" y="16.5%" class="st3 st8" display="${
+              config.show_solar === " no" ? "none" : ""
+            }" fill="${solar_colour}">${
+        stateObj110.state ? stateObj110.state : ""
+      }</text>
+            <text id="pv2_st" x="51%" y="16.5%" class="st3 st8" display="${
+              config.show_solar === " no" || config.solar.mppts === "one"
+                ? "none"
+                : ""
+            }" fill="${solar_colour}">${
+        stateObj111.state ? stateObj111.state : ""
+      }</text>
+            <text id="pv3_st" x="19%" y="16.5%" class="st3 st8" display="${
+              config.show_solar === " no" ||
+              config.solar.mppts === "one" ||
+              config.solar.mppts === "two"
+                ? "none"
+                : ""
+            }" fill="${solar_colour}">${
+        stateObj112.state ? stateObj112.state : ""
+      }</text>
+            <text id="pv4_st" x="64.5%" y="16.5%" class="st3 st8" display="${
+              config.show_solar === " no" ||
+              config.solar.mppts === "one" ||
+              config.solar.mppts === "two" ||
+              config.solar.mppts === "three"
+                ? "none"
+                : ""
+            }" fill="${solar_colour}">${
+        stateObj113.state ? stateObj113.state : ""
+      }</text>
+            <text id="inv_st" x="45%" y="34%" class="st3 st8" fill="${inverter_colour}">${
+        stateObj21.state ? stateObj21.state : ""
+      }</text>
 
             <text id="autarkye_value" x="0.5%" y="54%" display="${
               useautarky === "no" ? "none" : ""
@@ -1605,6 +1733,8 @@ class PowerFlowCard extends LitElement {
             }" class="st3 left-align" fill="${inverter_colour}" >Ratio</text>
 
             <!-- zzzzzzzzz    -->
+
+
 
             <text id="es-load1" x="72%" y="9%" class="st3" display="${
               additional_load === "no" ? "none" : ""
@@ -1761,6 +1891,10 @@ class PowerFlowCard extends LitElement {
           : "0"
       } W</text>
 
+<!--
+            <text id="autarkye_value" x="2%" y="15%" class="st3" fill="${inverter_colour}" >${pvmax}%</text>
+            <text id="autarkye_value" x="2%" y="18%" class="st3" fill="${inverter_colour}" >${totalsolar}%</text>
+-->
 
             <circle id="standby" cx="220" cy="260" r="3.5" fill="${inverterStateColour}"/>
 
@@ -2227,7 +2361,82 @@ class PowerFlowCard extends LitElement {
             <path d="M1329 571 c12 -21 87 -61 115 -61 29 0 12 24 -23 31 -18 4 -42 16 -55 28 -29 27 -51 28 -37 2z"/>
             <path d="M1480 542 c0 -5 26 -19 57 -32 31 -13 73 -38 93 -56 32 -29 45 -34 115 -40 53 -5 76 -4 72 3 -4 6 -27 14 -51 17 -32 5 -57 18 -91 48 -37 33 -46 37 -41 21 6 -20 2 -19 -61 13 -68 34 -93 41 -93 26z"/>  </g> </svg>
 
-
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+            x="90%" y="65%" width="80.000000pt" height="201.000000pt" viewBox="0 0 80.000000 201.000000"
+            preserveAspectRatio="xMidYMid meet">
+           <metadata>
+           Created by potrace 1.10, written by Peter Selinger 2001-2011
+           </metadata>
+           <g transform="translate(0.000000,100.000000) scale(0.050000,-0.050000)"
+           fill="white" stroke="none">
+           <path d="M380 1975 c0 -22 -4 -25 -36 -25 -50 0 -148 -27 -204 -55 -52 -26
+           -99 -76 -101 -106 -1 -10 -3 -23 -4 -29 -1 -5 -3 -66 -4 -135 -1 -104 -4 -125
+           -16 -125 -8 0 -15 -4 -15 -10 0 -5 7 -10 15 -10 13 0 15 -24 15 -155 0 -131
+           -2 -155 -15 -155 -24 0 -18 -18 7 -23 23 -4 23 -4 -2 -15 -18 -8 -20 -11 -7
+           -11 16 -1 17 -19 17 -241 0 -207 -2 -240 -15 -240 -8 0 -15 -4 -15 -10 0 -5 7
+           -10 15 -10 13 0 15 -22 16 -132 1 -73 1 -152 0 -175 -3 -54 12 -81 55 -99 34
+           -14 35 -17 33 -62 -1 -26 -1 -53 0 -60 1 -10 62 -12 289 -10 l287 3 0 58 c1
+           66 9 76 70 78 22 1 30 4 18 6 -25 5 -21 33 6 34 10 0 11 2 4 6 -17 6 -17 90 0
+           96 6 3 -73 6 -176 6 -137 1 -186 4 -181 12 5 9 -33 10 -140 7 -116 -3 -146 -1
+           -146 9 0 16 37 16 237 3 201 -13 413 -17 413 -8 0 5 -4 8 -10 8 -15 0 -13 137
+           3 144 10 5 10 7 0 12 -18 8 -18 180 -1 187 10 4 9 8 -2 16 -13 10 -13 12 0 21
+           8 5 10 10 3 10 -6 0 -13 21 -15 50 -2 39 0 50 12 50 13 0 13 1 0 10 -13 9 -13
+           11 0 20 10 6 11 10 3 10 -9 0 -13 19 -13 60 0 33 4 60 10 60 6 0 10 5 10 11 0
+           5 -4 7 -10 4 -5 -3 -10 0 -10 9 0 8 6 17 13 19 10 4 10 6 0 6 -15 1 -18 61 -3
+           61 6 0 10 5 10 11 0 5 -4 7 -10 4 -5 -3 -10 -2 -10 4 0 5 6 12 13 14 10 4 10
+           6 0 6 -10 1 -13 31 -13 115 0 82 4 116 13 120 10 5 10 7 0 12 -7 3 -13 12 -13
+           19 0 7 6 16 13 18 10 4 10 6 0 6 -7 1 -13 7 -13 15 0 8 6 17 13 19 10 4 10 6
+           0 6 -9 1 -13 24 -13 80 0 54 4 81 13 84 10 4 10 6 0 6 -7 1 -13 7 -13 15 0 8
+           6 17 13 19 7 3 6 6 -5 6 -9 1 -20 6 -24 13 -4 7 -3 8 4 4 27 -16 2 57 -31 92
+           -45 49 -188 101 -274 102 -28 0 -33 3 -33 25 0 20 -5 25 -25 25 -20 0 -25 -5
+           -25 -25z m125 -45 c107 -17 166 -41 212 -85 39 -38 56 -75 34 -75 -5 0 -30 25
+           -56 55 -33 39 -54 55 -71 55 -13 0 -24 -3 -24 -7 0 -4 21 -29 47 -55 l47 -48
+           -322 0 c-357 0 -349 -2 -292 63 70 80 262 124 425 97z m180 -110 c27 -27 43
+           -50 35 -50 -16 1 -108 100 -93 100 5 0 31 -22 58 -50z m52 -97 l28 -38 -3
+           -376 -2 -376 -168 -7 c-92 -3 -235 -6 -318 -7 -83 0 -155 -4 -161 -7 -7 -5
+           -10 -101 -9 -272 l1 -265 335 -11 335 -11 -362 -1 -363 -2 0 705 0 705 329 0
+           329 0 29 -37z m29 -815 c4 -5 -77 -8 -180 -8 -122 0 -185 -3 -181 -10 4 -6 65
+           -10 151 -10 83 0 144 -4 144 -9 0 -16 -18 -22 -26 -10 -3 6 -9 7 -13 3 -3 -5
+           -78 -7 -166 -5 -103 3 -147 7 -125 12 21 4 -18 6 -93 5 -96 -1 -127 2 -127 12
+           0 9 28 12 103 13 56 1 181 4 277 8 220 8 227 8 236 -1z m-6 -263 l0 -245 -24
+           0 -25 0 1 245 0 245 24 0 24 0 0 -245z m-360 205 c67 -6 60 -7 -65 -9 -77 0
+           -150 -4 -162 -7 -17 -5 -23 -2 -23 10 0 14 13 16 88 15 48 -1 121 -5 162 -9z
+           m260 -26 c0 -15 -9 -16 -61 -10 -34 3 -110 7 -168 8 l-106 2 80 6 c44 3 119 7
+           168 8 75 2 87 0 87 -14z m-270 -14 l95 -7 -85 -1 c-47 -1 -122 -5 -167 -9 -73
+           -5 -83 -4 -83 11 0 13 11 16 73 15 39 -1 115 -5 167 -9z m270 -26 c0 -15 -11
+           -16 -92 -10 -50 3 -125 7 -167 8 l-76 2 90 6 c189 13 245 12 245 -6z m-275
+           -14 c80 -5 88 -7 39 -8 -33 -1 -109 -5 -167 -9 -95 -5 -107 -4 -107 10 0 19
+           51 21 235 7z m275 -27 c0 -14 -11 -15 -97 -10 -54 4 -129 8 -168 9 -62 2 -58
+           3 35 8 210 12 230 12 230 -7z m-181 -19 c2 -2 -23 -4 -56 -4 -33 0 -108 -3
+           -166 -7 -97 -5 -107 -4 -107 11 0 16 12 17 163 10 89 -3 164 -8 166 -10z m185
+           -21 c6 -15 -4 -16 -115 -10 -67 4 -145 8 -173 9 -28 1 -4 5 54 8 207 12 227
+           11 234 -7z m-255 -15 l76 -1 -100 -7 c-183 -14 -235 -12 -235 6 0 15 11 16 92
+           10 50 -3 125 -7 167 -8z m291 -24 c0 -17 -16 -18 -26 -3 -5 8 -9 8 -14 -1 -6
+           -9 -46 -10 -171 -4 l-164 9 110 6 c195 10 265 8 265 -7z m-306 -16 l91 -1 -90
+           -8 c-49 -4 -125 -7 -167 -8 -66 -1 -78 2 -78 15 0 15 10 16 77 10 42 -3 117
+           -7 167 -8z m266 -20 c0 -9 3 -9 12 0 16 16 28 15 28 -3 0 -17 -95 -20 -265 -7
+           l-100 7 130 5 c72 3 145 7 163 8 19 1 32 -3 32 -10z m-342 -20 c116 -1 127 -2
+           72 -8 -36 -4 -104 -8 -152 -9 -75 -1 -88 1 -88 15 0 11 5 14 16 10 9 -3 77 -7
+           152 -8z m342 -19 c0 -8 4 -9 13 0 14 11 27 6 27 -11 0 -4 -53 -8 -117 -9 -65
+           0 -138 -4 -163 -9 -32 -6 -3 -8 98 -7 108 2 142 -1 142 -10 0 -10 -29 -13
+           -109 -13 -63 0 -112 -4 -116 -10 -4 -6 35 -10 109 -10 71 0 116 -4 116 -10 0
+           -6 -53 -10 -137 -11 -101 -1 -127 -4 -98 -10 22 -4 84 -8 138 -8 70 -1 97 -4
+           98 -13 0 -10 2 -10 6 0 6 16 36 16 31 0 -3 -7 -12 -12 -21 -12 -9 1 -88 3
+           -174 4 -113 2 -144 5 -108 10 32 5 -3 7 -98 6 -112 -1 -147 2 -147 12 0 9 30
+           12 114 12 66 0 117 4 121 10 4 6 -37 10 -114 10 -74 0 -121 4 -121 10 0 6 50
+           10 128 11 80 0 120 4 107 9 -11 5 -68 9 -127 9 -79 1 -108 4 -108 14 0 9 36
+           12 147 11 82 -1 126 2 98 5 -35 4 -4 8 100 11 83 3 153 7 158 8 4 1 7 -3 7 -9z
+           m-255 -149 c62 -6 56 -7 -61 -8 -72 -1 -146 -5 -163 -8 -24 -5 -31 -3 -31 10
+           0 14 13 16 93 15 50 -1 124 -5 162 -9z m295 -25 c0 -18 -11 -19 -29 -2 -11 10
+           -12 9 -6 -2 7 -12 -10 -13 -115 -8 -68 4 -148 8 -179 9 -47 1 -43 3 29 8 47 3
+           133 7 193 8 89 2 107 0 107 -13z m62 -110 c3 -30 1 -35 -17 -35 -53 0 -245
+           -34 -245 -44 0 -8 -58 -12 -187 -13 -167 -1 -191 1 -225 18 -35 18 -38 22 -38
+           64 l0 45 354 0 354 0 4 -35z m-12 -59 c-24 -23 -240 -48 -240 -28 0 7 168 36
+           235 41 17 1 17 -1 5 -13z m-523 -66 c112 -19 354 -10 434 15 17 6 19 1 19 -49
+           l0 -56 -275 0 -275 0 0 56 c0 50 2 55 19 49 11 -3 45 -10 78 -15z m343 9 c-59
+           -10 -250 -9 -320 1 -36 5 17 7 155 7 125 -1 192 -4 165 -8z"/>
+           </g>
+           </svg>
 
        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
        id="Ballon" x="102%" y="22%"  width="30%" height="30%" class="${
