@@ -2,8 +2,9 @@
 
 
 # Power Flow Card 
-![2023_1](https://github.com/JuWorkshop/power-flow-card/assets/89390048/9f27dbbc-b2ed-4d19-9593-4e3522294c33)
+![2023_1](https://repository-images.githubusercontent.com/677873929/1570e2d4-ac55-40a6-8146-ea92b3d5de10)
 
+)
 ![2023](https://user-images.githubusercontent.com/89390048/)
 <img src="https://user-images.githubusercontent.com/89390048/261030406-35d3024d-0e5c-4ed7-a4c8-5dc61a412bba.png" alt="GitHub Power Flow Card" width="600px"/>
 
