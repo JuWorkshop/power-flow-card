@@ -1,0 +1,192 @@
+type: custom:power-flow-card
+cardstyle: ju
+card_height: 900
+card_width: 100
+panel_mode: 'no'
+large_font: 'no'
+show_solar: 'yes'
+show_ev: 'yes'
+show_bal: 'yes'
+show_chaud: 'yes'
+show_stirling: 'yes'
+battery:
+  energy: 15960
+  shutdown_soc: 20
+  show_daily: 'yes'
+  invert_power: 'yes'
+  invert_power1: 'yes'
+  invert_power2: 'yes'
+  invert_power3: 'yes'
+  bat1_name: Agm
+  bat2_name: Lto
+  bat3_name: Lfp
+  bat4_name: Agm
+  colour: green
+  animation_speed: 6
+  max_power: 4500
+  full_capacity: 80
+  empty_capacity: 30
+inverter:
+  modern: multi
+  colour: grey
+  autarky: 'yes'
+solar:
+  show_daily: 'yes'
+  mppts: four
+  kwc: 3.6
+  m2: 18
+load:
+  colour: '#5fb6ad'
+  show_daily: 'yes'
+  show_aux: 'yes'
+  invert_aux: 'no'
+  aux_name: Inverter
+  aux_type: inv
+  aux_colour: red
+  aux_off_colour: red
+  animation_speed: 8
+  max_power: 8000
+  additional_loads: four
+  load1_name: AC
+  load2_name: EV_charg
+  load3_name: Routeur
+  load4_name: Atelier
+  load1_icon: mdi:air-conditioner
+  load2_icon: mdi:ev-station
+  load3_icon: mdi:water-boiler
+  load4_icon: mdi:garage
+grid:
+  show_grid: 'yes'
+  show_daily_buy: 'yes'
+  show_daily_sell: 'yes'
+  show_nonessential: 'no'
+  nonessential_name: ' '
+entities:
+  use_timer_248: none
+  priority_load_243: switch.none
+  inverter_voltage_154: sensor.multi_vout
+  load_frequency_192: sensor.multi_fout
+  inverter_current_164: sensor.multi_iout
+  inverter_power_175: sensor.multipluspout
+  grid_connected_status_194: binary_sensor.none
+  inverter_status_59: sensor.multi_state
+  day_battery_charge_70: sensor.energy_bat_charg_jour
+  day_battery_discharge_71: sensor.energy_bat_disch_jour
+  battery_voltage_183: sensor.multi_vbat
+  battery_soc_184: sensor.multi_soc
+  battery_power_190: sensor.multi_pbat
+  battery_current_191: sensor.multi_ibat
+  grid_power_169: sensor.none
+  day_grid_import_76: sensor.none
+  day_grid_export_77: sensor.none
+  grid_ct_power_172: sensor.none
+  remaining_solar: sensor.energy_production_today_remaining
+  day_load_energy_84: sensor.energy_out_production_jour
+  day_pv_energy_108: sensor.pvtoday
+  essential_load2: sensor.leaf_obc_outpwr
+  pv1_power_186: sensor.pvpower1
+  pv2_power_187: sensor.pvpower2
+  pv1_voltage_109: sensor.pvvoltage1
+  pv1_current_110: sensor.pvcurrent1
+  pv2_voltage_111: sensor.pvvoltage2
+  pv2_current_112: sensor.pvcurrent2
+  pv1_state: sensor.state1_text
+  pv2_state: sensor.state2_text
+  pv3_state: sensor.none
+  pv4_state: sensor.none
+  day_bat1_charge: sensor.energy_agm_charg_jour
+  day_bat1_discharge: sensor.energy_agm_disch_jour
+  battery1_voltage_183: sensor.bmv_voltage
+  battery1_soc_184: sensor.bmv_soc
+  battery1_power: sensor.bmv_power
+  battery1_current_191: sensor.bmv_current
+  day_bat2_charge: sensor.energy_lto_charg_jour
+  day_bat2_discharge: sensor.energy_lto_disch_jour
+  battery2_voltage_183: sensor.lto_voltage
+  battery2_soc_184: sensor.lto_soc
+  battery2_power: sensor.lto_power
+  battery2_current_191: sensor.lto_current
+  day_bat3_charge: sensor.energy_lfp_charg_jour
+  day_bat3_discharge: sensor.energy_lfp_disch_jour
+  battery3_voltage_183: sensor.jkbms_total_voltage
+  battery3_soc_184: sensor.jkbms_state_of_charge
+  battery3_power: sensor.jkbms_power
+  battery3_current_191: sensor.jkbms_current
+  day_bat4_charge: sensor.none
+  day_bat4_discharge: sensor.none
+  battery4_voltage_183: none
+  battery4_soc_184: null
+  battery4_power: none
+  battery4_current_191: none
+  bat1_disch_sw: switch.bmv_relay
+  bat1_charg_sw: switch.bmv_relay
+  bat2_disch_sw: switch.jkbms_charging
+  bat2_charg_sw: switch.jkbms_charging
+  bat3_disch_sw: switch.jkbms_discharging
+  bat3_charg_sw: switch.jkbms_charging
+  bat1_ah: sensor.bmv_consumedah
+  bat1_mid: sensor.bmv_timetogo
+  bat1_dev: sensor.bmv_midvoltagedev
+  bat1_min: sensor.bmv_minimumvoltage
+  bat1_max: sensor.bmv_maximumvoltage
+  bat2_mostemp: sensor.lto_temperature
+  bat2_cell1temp: sensor.jkbms_temperature_sensor_1
+  bat2_cell2temp: sensor.jkbms_temperature_sensor_2
+  bat2_min: sensor.lto_mincellvoltage
+  bat2_max: sensor.lto_maxcellvoltage
+  bat3_mostemp: sensor.jkbms_power_tube_temperature
+  bat3_min: sensor.jkbms_min_cell_voltage
+  bat3_max: sensor.jkbms_max_cell_voltage
+  bat3_cell1temp: sensor.jkbms_min_voltage_cell
+  bat3_cell2temp: sensor.jkbms_max_voltage_cell
+  bat4_mostemp: sensor.none
+  bat4_cell1temp: sensor.none
+  bat4_cell2temp: sensor.none
+  bat4_min: sensor.none
+  bat4_max: sensor.none
+  bat1_fault: sensor.none
+  bat2_fault: sensor.none
+  bat3_fault: sensor.jkbms_errors
+  bat4_fault: sensor.none
+  pressure_bmp280: sensor.pressure_bmp280
+  humidity: sensor.humidity
+  humidity_hdc1080: sensor.humidity_hdc1080
+  eco2_ccs811: sensor.eco2_ccs811
+  total_volatile_organic_compound_ccs811: sensor.total_volatile_organic_compound_ccs811
+  particulate_matter_10_0um_concentration: sensor.particulate_matter_10_0um_concentration
+  particulate_matter_2_5um_concentration: sensor.particulate_matter_2_5um_concentration
+  Text: sensor.chauf_text
+  Tsalon: sensor.chauf_tsalon
+  Tchambre: sensor.chauf_tchambre
+  Tbal1: sensor.chauf_tbal1
+  Tbal2: sensor.chauf_tbal2
+  Tbal3: sensor.chauf_tbal3
+  Tbal4: sensor.chauf_tbal4
+  ChargBal: sensor.chauf_chargeball
+  chauf_posivanne: sensor.chauf_posivanne
+  chauf_puischaud: sensor.chauf_puischaud
+  energy_chaud_jour: sensor.energy_chaud_jour
+  energy_chaud: sensor.energy_chaud
+  chauf_cint: sensor.chauf_cint
+  leaf_soc: sensor.leaf_soc
+  leaf_soh: sensor.leaf_soh
+  leaf_ah: sensor.leaf_ah
+  leaf_hv_v: sensor.leaf_hv_v
+  leaf_delta: sensor.leaf_delta
+  leaf_AV_D: sensor.leaf_av_d
+  leaf_AV_G: sensor.leaf_av_g
+  leaf_AR_D: sensor.leaf_ar_d
+  leaf_AR_G: sensor.leaf_ar_g
+  chauf_pumpchauf: sensor.chauf_pumpchauf
+  chauf_pumpchaud: sensor.chauf_pumpchaud
+  chauf_ventil: sensor.chauf_ventil
+  chauf_mode_auto: sensor.chauf_mode_auto
+  chauf_tempfumer: sensor.chauf_tempfumer
+  chauf_tempfoyer: sensor.chauf_tempfoyer
+  chauf_tchaudi: sensor.chauf_tchaudi
+  chauf_teaur: sensor.chauf_teaur
+  chauf_teaud: sensor.chauf_teaud
+  chauf_tchaudd: sensor.chauf_tchaudd
+  chauf_tballd: sensor.chauf_tballd
+  chauf_tballr: sensor.chauf_tballr
+  chauf_tchaudr: sensor.chauf_tchaudr
