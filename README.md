@@ -4,16 +4,9 @@
 
 # Power Flow Card 
 
-
-![2023](https://user-images.githubusercontent.com/89390048/)
-<img src="https://user-images.githubusercontent.com/89390048/261030406-35d3024d-0e5c-4ed7-a4c8-5dc61a412bba.png" alt="GitHub Power Flow Card" width="600px"/>
-
 Work in progress...
 
 ### Pictures
-
-![Capture d’écran de 2023-08-16 13-25-23](https://github.com/JuWorkshop/power-flow-card/assets/89390048/35d3024d-0e5c-4ed7-a4c8-5dc61a412bba)
-
 
 ![](img/level.png) 
 
