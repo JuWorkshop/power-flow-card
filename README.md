@@ -1,10 +1,10 @@
-![2023_2](https://github.com/JuWorkshop/power-flow-card/assets/89390048/c096ad2a-7c90-47ca-830e-de44db63e0a2)
+![2023_temp](https://repository-images.githubusercontent.com/677873929/a44a3b52-f940-4578-b359-eb3b1308bf4b)
+
 
 
 # Power Flow Card 
-![2023_1](https://repository-images.githubusercontent.com/677873929/1570e2d4-ac55-40a6-8146-ea92b3d5de10)
 
-)
+
 ![2023](https://user-images.githubusercontent.com/89390048/)
 <img src="https://user-images.githubusercontent.com/89390048/261030406-35d3024d-0e5c-4ed7-a4c8-5dc61a412bba.png" alt="GitHub Power Flow Card" width="600px"/>
 
